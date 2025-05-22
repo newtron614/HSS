@@ -107,6 +107,44 @@
     .center {
       text-align: center;
     }
+    .multi-select-button {
+     display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #e0e0e0;
+  color: #333;
+  border: 2px solid #1976d2;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 1.2rem;
+  margin: 0.7rem;
+  min-width: 160px;
+  min-height: 210px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background .3s, color .3s;
+  text-align: center;
+}
+.multi-select-button.selected {
+  background: #1976d2;
+  color: #fff;
+  border-color: #005cb2;
+}
+.arm-img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.img-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #222;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -148,6 +186,7 @@
         <button type="button" class="option-button" data-value="neck">목</button>
         <button type="button" class="option-button" data-value="shoulder">어깨</button>
         <button type="button" class="option-button" data-value="plexus">팔 저림 포함</button>
+        <button type="button" class="option-button" data-value="arm_hand">팔/손</button>
       </div>
     </div>
 
@@ -341,7 +380,101 @@
         <button type="button" class="option-button" data-name="sh_hist" data-value="adhesive_capsulitis">오십견(유착성 관절낭염)</button>
       </div>
     </div>
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 통증 위치는 어디인가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_location" data-value="upper_arm">
+          위팔<br>
+          <img src="image/arm_upper_arm.png" alt="위팔" style="height: 200px;vertical-align:middle;">
+        </button>
+        <button type="button" class="option-button" data-name="arm_location" data-value="elbow">
+          팔꿈치<br>
+          <img src="image/arm_elbow.png" alt="팔꿈치" style="height: 200px;vertical-align:middle;">
+        </button>
+        <button type="button" class="option-button" data-name="arm_location" data-value="forearm">
+          아래팔<br>
+          <img src="image/arm_forearm.png" alt="아래팔" style="height: 200px;vertical-align:middle;">
+        </button>
+        <button type="button" class="option-button" data-name="arm_location" data-value="wrist">
+          손목<br>
+          <img src="image/arm_wrist.png" alt="손목" style="height: 200px;vertical-align:middle;">
+        </button>
+        <button type="button" class="option-button" data-name="arm_location" data-value="hand">
+          손/손가락<br>
+          <img src="image/arm_hand.png" alt="손/손가락" style="height: 200px;vertical-align:middle;">
+        </button>
+      </div>
+    </div>
+    
+    <!-- 2. 팔/손: 주요 증상 (복수 선택) -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 아래 증상 중 해당되는 것을 모두 선택해 주세요. <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="numbness">저림</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="paresthesia">감각이상</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="weakness">힘 빠짐</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="night_worse">야간에 더 심해짐</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="none">해당사항 없음</button>
+      </div>
+    </div>
+    
+    <!-- 3. 팔/손: 최근 다친 적(외상)이 있나요? -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 최근 다친 적(외상)이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_trauma" data-value="yes">예</button>
+        <button type="button" class="option-button" data-name="arm_trauma" data-value="no">아니오</button>
+      </div>
+    </div>
+    
+    <!-- 4. 팔/손: 어떤 동작/자세에서 통증이 더 심해지나요? (복수 선택) -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 어떤 동작/자세에서 통증이 더 심해지나요? <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="flexion">손/손목을 굽힐 때</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="extension">펴거나 돌릴 때</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="grip">쥘 때</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="posture">특정 자세에서</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="snap">손가락 움직일 때 딸깍/걸림</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="none">없음</button>
+      </div>
+    </div>
+    
+    <!-- 5. 팔/손: 아래 증상 중 해당되는 것이 있나요? (복수 선택) -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 아래 증상 중 해당되는 것이 있나요? <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="swelling">부종(붓기)</button>
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="redness">발적(빨개짐)</button>
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="heat">열감(뜨거움)</button>
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="skin_change">피부 변화</button>
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="none">없음</button>
+      </div>
+    </div>
+    
+    <!-- 6. 팔/손: 아침에 손이 뻣뻣한가요? -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 아침에 손이 뻣뻣한가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_morning_stiff" data-value="yes">예</button>
+        <button type="button" class="option-button" data-name="arm_morning_stiff" data-value="no">아니오</button>
+      </div>
+    </div>
+    
+    <!-- 7. 팔/손: 결절(만져지는 혹/덩어리), 피부 밑에 딱딱한 부분, 손가락이 잘 펴지지 않는 증상이 있나요? -->
+    <div class="question" data-group="arm_hand">
+      <strong>팔/손: 결절(만져지는 혹/덩어리), 피부 밑에 딱딱한 부분, 손가락이 잘 펴지지 않는 증상이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="arm_nodule" data-value="yes">예</button>
+        <button type="button" class="option-button" data-name="arm_nodule" data-value="no">아니오</button>
+      </div>
+    </div>
 
+    <div class="question" data-group="arm_hand">
+        <strong>팔/손: 담당의사에게 추가로 전달하고 싶은 내용, 또는 궁금한 점이 있다면 자유롭게 입력해 주세요.</strong>
+        <textarea id="arm_hand_impression" style="width:100%;min-height:80px;border-radius:8px;font-size:1.1rem;padding:10px;margin-top:8px;"></textarea>
+      </div>
+      
 
     <div class="question" data-group="general">
       <strong>최종) 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
@@ -507,6 +640,9 @@
           imps.push('Scapulocostal Syndrome (견갑늑골 증후군)');
         if (sel.onset==='gradual' && sel.score>=8)
           imps.push('Avascular Necrosis of GH Joint (견관절 무혈성 괴사) 감별권장');
+      }  
+      if (sel.area.includes('arm_hand')) {
+    imps.push(...generateArmHandImpression(sel));
       }
       if (sel.score>=8)
         imps.push('심한 통증: 적극적 진통 및 영상검사 권장');
@@ -514,6 +650,64 @@
         imps.push('추가 진찰 및 영상검사 권장');
       return imps;
     }
+
+    // 팔/손(arm_hand) Impression 생성 함수
+function generateArmHandImpression(sel) {
+  const imps = [];
+
+  // 부위별 대표 진단
+  if (sel.arm_location?.includes('wrist')) {
+    if (sel.arm_symptom?.includes('numbness') && sel.arm_trigger?.includes('flexion'))
+      imps.push('Carpal Tunnel Syndrome (수근관 증후군)');
+    if (sel.arm_symptom?.includes('weakness') && sel.arm_trigger?.includes('grip'))
+      imps.push('Median Nerve Neuropathy (정중신경병증)');
+    if (sel.arm_swelling?.includes('swelling'))
+      imps.push('Wrist Tenosynovitis (손목 건초염) 감별');
+  }
+  if (sel.arm_location?.includes('elbow')) {
+    if (sel.arm_symptom?.includes('numbness') && sel.arm_symptom?.includes('night_worse'))
+      imps.push('Cubital Tunnel Syndrome (주관절터널 증후군)');
+    if (sel.arm_trigger?.includes('flexion'))
+      imps.push('Ulnar Nerve Entrapment (척골신경 포착)');
+    if (sel.arm_swelling?.includes('swelling'))
+      imps.push('Elbow Bursitis (주관절 점액낭염) 감별');
+  }
+  if (sel.arm_location?.includes('hand')) {
+    if (sel.arm_symptom?.includes('numbness') && sel.arm_trigger?.includes('snap'))
+      imps.push('Trigger Finger (방아쇠수지)');
+    if (sel.arm_swelling?.includes('swelling') || sel.arm_swelling?.includes('redness'))
+      imps.push('Infectious Tenosynovitis (감염성 건초염) 감별');
+    if (sel.arm_symptom?.includes('paresthesia'))
+      imps.push('Peripheral Neuropathy (말초신경병증)');
+  }
+  if (sel.arm_location?.includes('upper_arm') || sel.arm_location?.includes('forearm')) {
+    if (sel.arm_symptom?.includes('numbness') && sel.arm_symptom?.includes('weakness'))
+      imps.push('C7-T1 Radiculopathy (경추 신경근병증, 하행지)');
+    if (sel.arm_trauma === 'yes')
+      imps.push('Muscle/Tendon Injury (근육 또는 건 손상)');
+  }
+
+  // 기타 증상/패턴별 진단
+  if (sel.arm_symptom?.includes('night_worse'))
+    imps.push('Night Pain: Nerve Entrapment or Inflammatory Disease (야간 악화: 신경포착/염증질환 감별)');
+
+  if (sel.arm_swelling?.includes('swelling') && sel.arm_swelling?.includes('redness'))
+    imps.push('Inflammatory Arthritis (염증성 관절염) 감별');
+
+  if (sel.arm_nodule === 'yes')
+    imps.push('Dupuytren’s Contracture or Ganglion Cyst (듀피트렌 구축/결절 혹) 감별');
+
+  if (sel.arm_morning_stiff === 'yes')
+    imps.push('Rheumatoid Arthritis (류마티스 관절염) 감별');
+
+  if (sel.score >= 8)
+    imps.push('심한 통증: 적극적 진단·치료 및 영상검사 권장');
+
+  if (!imps.length)
+    imps.push('추가 진찰 및 영상검사 권장');
+
+  return imps;
+}
 
     // Google Sheets 연동 URL (실제 URL로 교체 필요)
     const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwfrYtGVqXL264bU2JmgBrFTScdXfdI_NSaLFvm2UsSSrP_wwR2dr6coaNtuOax9q4-/exec'; // 실제 URL로 교체하세요
@@ -559,7 +753,15 @@ document.getElementById('form').addEventListener('submit', async e => {
           }
         }
       });
-
+      // ★★★ arm_hand_impression 값을 details에 추가! ★★★
+       const armHandImp = document.getElementById('arm_hand_impression') ? document.getElementById('arm_hand_impression').value.trim() : "";
+      if (armHandImp) {
+      formData.details.push({
+     name: "arm_hand_impression",
+     value: armHandImp,
+     text: armHandImp
+      });
+      }
       // 발생 시기 (단일 선택)
       const onsetBtn = document.querySelector('.option-button[data-name="onset"].selected');
       if (onsetBtn) {
@@ -584,7 +786,6 @@ document.getElementById('form').addEventListener('submit', async e => {
           formData.details.push(detail);
         }
       });
-
       // 임프레션 생성
       const selForImpression = {
         area: formData.area,
