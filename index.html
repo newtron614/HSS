@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
   <title>통증 문진지</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
@@ -107,67 +107,30 @@
     .center {
       text-align: center;
     }
-    .multi-select-button {
-     display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: #e0e0e0;
-  color: #333;
-  border: 2px solid #1976d2;
-  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
-  font-size: 1.1rem;
-  border-radius: 1.2rem;
-  margin: 0.7rem;
-  min-width: 160px;
-  min-height: 210px;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: background .3s, color .3s;
-  text-align: center;
-}
-.multi-select-button.selected {
-  background: #1976d2;
-  color: #fff;
-  border-color: #005cb2;
-}
-.arm-img {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-.img-label {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 5px;
-  color: #222;
-  text-align: center;
-}
-.area-title {
-  font-size: 1.5rem;        /* 기본 question 보다 1.2~1.5배 크게 */
-  font-weight: 700;
-  color: #0055aa;           /* 병원 CI 컬러나 강조색 */
-  margin-bottom: 0.8em;
-  border-bottom: 3px solid #0055aa;
-  padding-bottom: 0.2em;
-}
-#nextBtn {
-  display: inline-block;
-}
-#prevBtn {
-  display: none;
-}
-#submitBtn {
-  display: none;
-}
+    .area-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0055aa;
+      margin-bottom: 0.8em;
+      border-bottom: 3px solid #0055aa;
+      padding-bottom: 0.2em;
+    }
+    #nextBtn {
+      display: inline-block;
+    }
+    #prevBtn {
+      display: none;
+    }
+    #submitBtn {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <h1>📋 통증 문진지 📋</h1>
   <form id="form">
 
-    <!-- 환자정보 입력(환자번호, 생년월일 8자리) -->
+    <!-- ─── 환자정보 입력 ─── -->
     <div class="question active" data-group="pid">
       <strong>환자 정보를 입력하세요.</strong>
       <div class="center" style="margin-bottom:1rem;">
@@ -177,7 +140,6 @@
           placeholder="환자 번호"
           style="font-size:1.2rem; padding:.7rem 1rem; border-radius:.5rem; border:1px solid #bbb; width:60%; text-align:center; margin-bottom:.7rem;"
           required
-          maxlength="15"
         /><br>
         <input
           type="text"
@@ -195,6 +157,7 @@
       </div>
     </div>
 
+    <!-- ─── 1. 통증 부위 선택 ─── -->
     <div class="question" data-group="general">
       <strong>1. 통증 부위가 어디인가요? (복수 선택 가능)</strong>
       <div class="button-grid">
@@ -202,156 +165,156 @@
         <button type="button" class="option-button" data-value="face">얼굴</button>
         <button type="button" class="option-button" data-value="neck">목</button>
         <button type="button" class="option-button" data-value="shoulder">어깨</button>
+        <button type="button" class="option-button" data-value="thoracic">등/늑골</button>
         <button type="button" class="option-button" data-value="arm">팔/손[저림·통증]</button>
         <button type="button" class="option-button" data-value="lumbohip">허리/고관절/골반</button>
-        <button type="button" class="option-button" data-value="leg_pain">다리[저림·통증]</button>
+        <button type="button" class="option-button" data-value="leg_pain_pain">다리[저림·통증]</button>
       </div>
     </div>
 
-    <!-- 1-1. 팔 세부 선택 -->
+    <!-- ─── 1-1. 팔/손 세부 선택 ─── -->
     <div class="question" data-group="arm_choice">
-      <strong>팔/손 중 어떤 문제인가요? (복수 선택 가능)</strong>
+      <strong>팔/손: 어떤 문제가 있나요? (복수 선택 가능)</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-value="plexus">저림</button>
         <button type="button" class="option-button" data-value="arm_hand">통증</button>
       </div>
     </div>
 
+    <!-- ====== 두통 문진 (headache) ====== -->
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-        <strong>두통: 통증 위치는 어디인가요? (복수 선택 가능)</strong>
-        <div class="button-grid">
-          <button type="button" class="option-button" data-name="hd_location" data-value="frontal">
-            이마/전두부<br>
-            <img src="image/hd_frontal.png" alt="이마/전두부" style="height: 200px; vertical-align: middle;">
-          </button>
-          <button type="button" class="option-button" data-name="hd_location" data-value="temporal">
-            관자놀이/측두부<br>
-            <img src="image/hd_temporal.png" alt="관자놀이/측두부" style="height: 200px; vertical-align: middle;">
-          </button>
-          <button type="button" class="option-button" data-name="hd_location" data-value="occipital">
-            후두부<br>
-            <img src="image/hd_occipital.png" alt="후두부" style="height: 200px; vertical-align: middle;">
-          </button>
-          <button type="button" class="option-button" data-name="hd_location" data-value="vertex">
-            정수리<br>
-            <img src="image/hd_vertex.png" alt="정수리" style="height: 200px; vertical-align: middle;">
-          </button>
-          <button type="button" class="option-button" data-name="hd_location" data-value="unilateral">
-            한쪽만<br>
-            <img src="image/hd_unilateral_combined.png" alt="한쪽만(오른쪽 혹은 왼쪽)" style="height: 200px; vertical-align: middle;">
-          </button>
-          <button type="button" class="option-button" data-name="hd_location" data-value="periorbital">
-            눈 주위<br>
-            <img src="image/hd_periorbital.png" alt="눈 주위" style="height: 200px; vertical-align: middle;">
-          </button>
-        </div>
-      </div>      
-    <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-        <strong>두통: 통증이 언제부터 시작되었나요?</strong>
-        <div class="button-grid">
-          <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
-        </div>
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 통증 위치는 어디인가요? (복수 선택 가능)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="headache_location" data-value="frontal">
+          이마/전두부<br>
+          <img src="image/headache_frontal.png" alt="이마/전두부" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="headache_location" data-value="temporal">
+          관자놀이/측두부<br>
+          <img src="image/headache_temporal.png" alt="관자놀이/측두부" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="headache_location" data-value="occipital">
+          후두부<br>
+          <img src="image/headache_occipital.png" alt="후두부" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="headache_location" data-value="vertex">
+          정수리<br>
+          <img src="image/headache_vertex.png" alt="정수리" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="headache_location" data-value="unilateral">
+          한쪽만<br>
+          <img src="image/headache_unilateral_combined.png" alt="한쪽만" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="headache_location" data-value="periorbital">
+          눈 주위<br>
+          <img src="image/headache_periorbital.png" alt="눈 주위" style="height: 200px; vertical-align: middle;">
+        </button>
       </div>
-      <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
+    </div>
+    <div class="question" data-group="headache">
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 통증이 언제부터 시작되었나요?</strong>
+      <div class="button-grid">
+        <!-- data-name="onset" 으로 통일 -->
+        <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
+      </div>
+    </div>
+    <div class="question" data-group="headache">
+      <h2 class="area-title">🧠 두통 문진</h2>
       <strong>두통: 통증 양상은 어떤가요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_char" data-value="pulsating">박동성/쑤시는</button>
-        <button type="button" class="option-button" data-name="hd_char" data-value="pressing">조이는/압박감</button>
-        <button type="button" class="option-button" data-name="hd_char" data-value="stabbing">찌르는 듯한</button>
-        <button type="button" class="option-button" data-name="hd_char" data-value="dull">둔한</button>
-        <button type="button" class="option-button" data-name="hd_char" data-value="throbbing">욱신거리는</button>
+        <button type="button" class="option-button" data-name="headache_char" data-value="pulsating">박동성/쑤시는</button>
+        <button type="button" class="option-button" data-name="headache_char" data-value="pressing">조이는/압박감</button>
+        <button type="button" class="option-button" data-name="headache_char" data-value="stabbing">찌르는 듯</button>
+        <button type="button" class="option-button" data-name="headache_char" data-value="dull">둔한</button>
+        <button type="button" class="option-button" data-name="headache_char" data-value="throbbing">욱신거리는</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-      <strong>두통: 언제 발생하고, 얼마나 지속되나요?</strong>
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 발생 및 지속 기간은?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_onset" data-value="sudden">갑자기 시작</button>
-        <button type="button" class="option-button" data-name="hd_onset" data-value="gradual">서서히 시작</button>
-        <button type="button" class="option-button" data-name="hd_duration" data-value="minutes">수 분 내 소실</button>
-        <button type="button" class="option-button" data-name="hd_duration" data-value="hours">수 시간 지속</button>
-        <button type="button" class="option-button" data-name="hd_duration" data-value="days">수 일간 지속</button>
+        <!-- headache_onset2 / headache_duration 은 detail 로 기록만 하고, formData.onset 은 위의 onset에서 가져옴 -->
+        <button type="button" class="option-button" data-name="headache_onset2" data-value="sudden">갑자기 시작</button>
+        <button type="button" class="option-button" data-name="headache_onset2" data-value="gradual">서서히 시작</button>
+        <button type="button" class="option-button" data-name="headache_duration" data-value="minutes">수 분 내 소실</button>
+        <button type="button" class="option-button" data-name="headache_duration" data-value="hours">수 시간 지속</button>
+        <button type="button" class="option-button" data-name="headache_duration" data-value="days">수 일간 지속</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-      <strong>두통: 통증을 악화시키는 요인이 있나요?</strong>
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 악화 유발 요인은?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_trigger" data-value="stress">스트레스</button>
-        <button type="button" class="option-button" data-name="hd_trigger" data-value="light">강한 빛/소음</button>
-        <button type="button" class="option-button" data-name="hd_trigger" data-value="activity">운동/활동 시</button>
-        <button type="button" class="option-button" data-name="hd_trigger" data-value="menstruation">월경/호르몬 변화</button>
-        <button type="button" class="option-button" data-name="hd_trigger" data-value="none">특이 요인 없음</button>
+        <button type="button" class="option-button" data-name="headache_trigger" data-value="stress">스트레스</button>
+        <button type="button" class="option-button" data-name="headache_trigger" data-value="light">강한 빛/소음</button>
+        <button type="button" class="option-button" data-name="headache_trigger" data-value="activity">운동/활동 시</button>
+        <button type="button" class="option-button" data-name="headache_trigger" data-value="menstruation">월경/호르몬</button>
+        <button type="button" class="option-button" data-name="headache_trigger" data-value="none">특이 없음</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-      <strong>두통: 통증을 완화시키는 요인은?</strong>
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 완화 유발 요인은?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_relief" data-value="rest">휴식/수면</button>
-        <button type="button" class="option-button" data-name="hd_relief" data-value="medication">진통제 복용</button>
-        <button type="button" class="option-button" data-name="hd_relief" data-value="none">없음</button>
+        <button type="button" class="option-button" data-name="headache_relief" data-value="rest">휴식/수면</button>
+        <button type="button" class="option-button" data-name="headache_relief" data-value="medication">진통제 복용</button>
+        <button type="button" class="option-button" data-name="headache_relief" data-value="none">없음</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
+      <h2 class="area-title">🧠 두통 문진</h2>
       <strong>두통: 동반 증상이 있나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_symp" data-value="nausea">구역/구토</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="visual">시야이상/빛 번짐</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="tearing">눈물/콧물</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="dizziness">어지럼증</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="weakness">팔다리 힘빠짐</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="fever">발열</button>
-        <button type="button" class="option-button" data-name="hd_symp" data-value="none">없음</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="nausea">구역/구토</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="visual">시야 이상/빛 번짐</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="tearing">눈물/콧물</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="dizziness">어지럼</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="weakness">팔다리 힘빠짐</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="fever">발열</button>
+        <button type="button" class="option-button" data-name="headache_symp" data-value="none">없음</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
-      <strong>두통: 관련 과거 병력이 있나요?(없으면 다음)</strong>
+      <h2 class="area-title">🧠 두통 문진</h2>
+      <strong>두통: 과거 병력이 있나요? (없으면 다음)</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="hd_hist" data-value="migraine">편두통</button>
-        <button type="button" class="option-button" data-name="hd_hist" data-value="trauma">머리 외상</button>
-        <button type="button" class="option-button" data-name="hd_hist" data-value="brain_tumor">뇌종양/수술</button>
-        <button type="button" class="option-button" data-name="hd_hist" data-value="none">특이 병력 없음</button>
+        <button type="button" class="option-button" data-name="headache_hist" data-value="migraine">편두통</button>
+        <button type="button" class="option-button" data-name="headache_hist" data-value="trauma">머리 외상</button>
+        <button type="button" class="option-button" data-name="headache_hist" data-value="brain_tumor">뇌종양/수술</button>
+        <button type="button" class="option-button" data-name="headache_hist" data-value="none">없음</button>
       </div>
     </div>
     <div class="question" data-group="headache">
-        <h2 class="area-title">🧠 두통 문진</h2>
+      <h2 class="area-title">🧠 두통 문진</h2>
       <strong>두통: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-      <div class="pain-description" style="font-size:1.25rem;">
-        <strong>0점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-        전혀 아프지 않음<br>
-        <strong>5점:</strong>
-        <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-        일상 지장 없지만 신경 쓰임<br>
-        <strong>10점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-        견디기 어려울 정도로 심함
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 없지만 신경 쓰임<br>
+        <strong>10점:</strong> 😫 견디기 어려울 정도
       </div>
       <div class="pain-grid">
-        <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-        <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-        <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-        <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-        <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-        <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-        <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-        <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-        <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-        <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-        <button type="button" class="score-button" data-name="score" data-score="10">10</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="headache_score" data-score="10">10</button>
       </div>
-    </div>    
+    </div>
+
+    <!-- ====== 얼굴 문진 (face) ====== -->
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
+      <h2 class="area-title">😊 얼굴 문진</h2>
       <strong>얼굴: 통증 위치는 어디인가요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="face_location" data-value="forehead">이마·눈 주위</button>
@@ -360,9 +323,10 @@
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
+      <h2 class="area-title">😊 얼굴 문진</h2>
       <strong>얼굴: 통증이 언제부터 시작되었나요?</strong>
       <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
         <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
@@ -370,136 +334,134 @@
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
+      <h2 class="area-title">😊 얼굴 문진</h2>
       <strong>얼굴: 통증 특성은 어떻게 나타나나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="face_char" data-value="electric">전기충격 같은 단발성 찌릿함</button>
-        <button type="button" class="option-button" data-name="face_char" data-value="aching">지속적이고 묵직한 욱신거림</button>
-        <button type="button" class="option-button" data-name="face_char" data-value="pressure">찌르거나 쥐어짜는 양상</button>
+        <button type="button" class="option-button" data-name="face_char" data-value="electric">전기충격 같은 찌릿함</button>
+        <button type="button" class="option-button" data-name="face_char" data-value="aching">묵직한 욱신거림</button>
+        <button type="button" class="option-button" data-name="face_char" data-value="pressure">찌르거나 압박감</button>
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
-      <strong>얼굴: 통증이 악화되는 유발 요인은?</strong>
+      <h2 class="area-title">😊 얼굴 문진</h2>
+      <strong>얼굴: 통증 악화 유발 요인은?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="face_trigger" data-value="cold">바람·찬공기 노출 시</button>
+        <button type="button" class="option-button" data-name="face_trigger" data-value="cold">찬공기 노출</button>
         <button type="button" class="option-button" data-name="face_trigger" data-value="chew">씹거나 말할 때</button>
-        <button type="button" class="option-button" data-name="face_trigger" data-value="wash">세안·양치 시</button>
+        <button type="button" class="option-button" data-name="face_trigger" data-value="wash">세안/양치 시</button>
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
+      <h2 class="area-title">😊 얼굴 문진</h2>
       <strong>얼굴: 동반 증상이 있나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="face_symp" data-value="sensory">안면 감각 저하/저림</button>
-        <button type="button" class="option-button" data-name="face_symp" data-value="tearing">눈물·콧물 과다</button>
+        <button type="button" class="option-button" data-name="face_symp" data-value="sensory">감각 저하/저림</button>
+        <button type="button" class="option-button" data-name="face_symp" data-value="tearing">눈물/콧물</button>
         <button type="button" class="option-button" data-name="face_symp" data-value="hearing">청력 이상</button>
-        <button type="button" class="option-button" data-name="face_symp" data-value="jaw_lock">턱관절 입 벌림 제한</button>
+        <button type="button" class="option-button" data-name="face_symp" data-value="jaw_lock">턱관절 제한</button>
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
-      <strong>얼굴: 관련 과거 병력이 있나요?(없으면 다음)</strong>
+      <h2 class="area-title">😊 얼굴 문진</h2>
+      <strong>얼굴: 과거 병력이 있나요? (없으면 다음)</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="face_hist" data-value="zoster">대상포진 과거력</button>
-        <button type="button" class="option-button" data-name="face_hist" data-value="bell">안면마비·구순포진</button>
-        <button type="button" class="option-button" data-name="face_hist" data-value="dental">치과 시술·턱관절 장애</button>
+        <button type="button" class="option-button" data-name="face_hist" data-value="zoster">대상포진</button>
+        <button type="button" class="option-button" data-name="face_hist" data-value="bell">안면마비/구순포진</button>
+        <button type="button" class="option-button" data-name="face_hist" data-value="dental">치과 시술</button>
+        <button type="button" class="option-button" data-name="face_hist" data-value="none">없음</button>
       </div>
     </div>
     <div class="question" data-group="face">
-        <h2 class="area-title">😊 얼굴 문진</h2>
-      <strong>얼굴: 현재 얼굴 통증 정도는 어느 정도인가요? (0~10)</strong>
-      <div class="pain-description" style="font-size:1.25rem;">
-        <strong>0점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-        전혀 아프지 않음<br>
-        <strong>5점:</strong>
-        <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-        일상 지장 없지만 신경 쓰임<br>
-        <strong>10점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-        견디기 어려울 정도로 심함
+      <h2 class="area-title">😊 얼굴 문진</h2>
+      <strong>얼굴: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
       </div>
       <div class="pain-grid">
-        <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-        <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-        <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-        <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-        <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-        <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-        <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-        <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-        <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-        <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-        <button type="button" class="score-button" data-name="score" data-score="10">10</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="face_score" data-score="10">10</button>
+      </div>
+    </div>
+
+    <!-- ====== 목 문진 (neck) ====== -->
+    <div class="question" data-group="neck">
+      <h2 class="area-title">💆 목 문진</h2>
+      <strong>목: 통증 위치는 어디인가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="neck_location" data-value="후두부">
+          후두부<br>
+          <img src="image/neck_suboccipital.png.png" alt="후두부" style="height: 160px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="neck_location" data-value="측면">
+          측면<br>
+          <img src="image/neck_lateral.png" alt="측면" style="height: 160px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="neck_location" data-value="전방">
+          전방<br>
+          <img src="image/neck_anterior.png" alt="전방" style="height: 160px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="neck_location" data-value="윗등">
+          윗등<br>
+          <img src="image/neck_upper_trapezius.png.png" alt="윗등" style="height: 160px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="neck_location" data-value="날개뼈 사이">
+          날개뼈 사이<br>
+          <img src="image/neck_scapular_neck.png.png" alt="날개뼈 사이" style="height: 160px; vertical-align: middle;">
+        </button>
       </div>
     </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
-        <strong>목: 통증 위치는 어디인가요?</strong>
-        <div class="button-grid">
-          <button type="button" class="option-button" data-name="neck_location" data-value="후두부">
-            후두부<br>
-            <img src="image/neck_suboccipital.png.png" alt="후두부" style="height: 160px;vertical-align:middle;">
-          </button>
-          <button type="button" class="option-button" data-name="neck_location" data-value="뒤 옆">
-            측면<br>
-            <img src="image/neck_lateral.png" alt="측면" style="height: 160px;vertical-align:middle;">
-          </button>
-          <button type="button" class="option-button" data-name="neck_location" data-value="앞">
-            전방<br>
-            <img src="image/neck_anterior.png" alt="전방" style="height: 160px;vertical-align:middle;">
-          </button>
-          <button type="button" class="option-button" data-name="neck_location" data-value="윗등">
-            윗등<br>
-            <img src="image/neck_upper_trapezius.png.png" alt="윗등" style="height: 160px;vertical-align:middle;">
-          </button>
-          <button type="button" class="option-button" data-name="neck_location" data-value="날개뼈 사이">
-            날개뼈 사이<br>
-            <img src="image/neck_scapular_neck.png.png" alt="날개뼈 사이" style="height: 160px;vertical-align:middle;">
-          </button>
-        </div>
-      </div>      
-      <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
-        <strong>목: 통증이 언제부터 시작되었나요?</strong>
-        <div class="button-grid">
-          <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
-          <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
-        </div>
+      <h2 class="area-title">💆 목 문진</h2>
+      <strong>목: 통증이 언제부터 시작되었나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
       </div>
+    </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
+      <h2 class="area-title">💆 목 문진</h2>
       <strong>목: 어떤 자세에서 악화되나요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="neck_posture" data-value="rotate">머리 회전 시</button>
         <button type="button" class="option-button" data-name="neck_posture" data-value="flex_ext">목 굽힘/젖힘 시</button>
         <button type="button" class="option-button" data-name="neck_posture" data-value="device">장시간 스마트폰/PC 사용</button>
+        </button>
       </div>
     </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
+      <h2 class="area-title">💆 목 문진</h2>
       <strong>목: 통증이 방사되나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="neck_rad" data-value="scapular_rad">날개뼈 사이</button>
-        <button type="button" class="option-button" data-name="neck_rad" data-value="upper_arm">어깨 윗팔</button>
-        <button type="button" class="option-button" data-name="neck_rad" data-value="headache">두통 동반</button>
+        <button type="button" class="option-button" data-name="neck_rad" data-value="날개뼈 사이">날개뼈 사이</button>
+        <button type="button" class="option-button" data-name="neck_rad" data-value="어깨 윗팔">어깨 윗팔</button>
+        <button type="button" class="option-button" data-name="neck_rad" data-value="두통">두통 동반</button>
       </div>
     </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
+      <h2 class="area-title">💆 목 문진</h2>
       <strong>목: 동반 증상이 있나요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="neck_symp" data-value="arm_sens">팔 저림/감각 이상</button>
         <button type="button" class="option-button" data-name="neck_symp" data-value="arm_weak">팔 근력 저하</button>
-        <button type="button" class="option-button" data-name="neck_symp" data-value="morning_stiff">아침 기상 시 뻣뻣함, 고개 돌리기 힘듦</button>
+        <button type="button" class="option-button" data-name="neck_symp" data-value="morning_stiff">아침 기상 시 뻣뻣함</button>
       </div>
     </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
-      <strong>목: 관련 과거 병력이 있나요?(없으면 다음)</strong>
+      <h2 class="area-title">💆 목 문진</h2>
+      <strong>목: 관련 과거 병력이 있나요? (없으면 다음)</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="neck_hist" data-value="disc_stenosis">경추 디스크/협착증</button>
         <button type="button" class="option-button" data-name="neck_hist" data-value="trauma_disc">외상/추간판 탈출</button>
@@ -507,164 +469,146 @@
       </div>
     </div>
     <div class="question" data-group="neck">
-        <h2 class="area-title">💆 목 문진</h2>
+      <h2 class="area-title">💆 목 문진</h2>
       <strong>목: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-      <div class="pain-description" style="font-size:1.25rem;">
-        <strong>0점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-        전혀 아프지 않음<br>
-        <strong>5점:</strong>
-        <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-        일상 지장 없지만 신경 쓰임<br>
-        <strong>10점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-        견디기 어려울 정도로 심함
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
       </div>
       <div class="pain-grid">
-        <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-        <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-        <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-        <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-        <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-        <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-        <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-        <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-        <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-        <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-        <button type="button" class="score-button" data-name="score" data-score="10">10</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="neck_score" data-score="10">10</button>
       </div>
     </div>
 
+    <!-- ====== 팔 저림/감각 이상 (plexus) 문진 ====== -->
     <div class="question" data-group="plexus">
-      <h2 class="area-title">💪 팔 저림/감각이상</h2>
-      <strong>저림은 어느 부위에 분포하나요?</strong>
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>저림: 분포 부위는 어디인가요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="plexus_dist" data-value="upper_arm">
-        위팔<br>
-        <img src="image/arm_upper_arm.png" alt="위팔" style="height: 200px;vertical-align:middle;">
-      </button>
-        <button type="button" class="option-button" data-name="plexus_dist" data-value="forearm">
-          아래팔<br>
-          <img src="image/arm_forearm.png" alt="아래팔" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="plexus_dist" data-value="upper_arm">위팔<br>
+          <img src="image/arm_upper_arm.png" alt="위팔" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="plexus_dist" data-value="wrist">
-          손목<br>
-          <img src="image/arm_wrist.png" alt="손목" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="plexus_dist" data-value="forearm">아래팔<br>
+          <img src="image/arm_forearm.png" alt="아래팔" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="plexus_dist" data-value="hand">
-          손/손가락<br>
-          <img src="image/arm_hand.png" alt="손/손가락" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="plexus_dist" data-value="wrist">손목<br>
+          <img src="image/arm_wrist.png" alt="손목" style="height: 200px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="plexus_dist" data-value="hand">손/손가락<br>
+          <img src="image/arm_hand.png" alt="손/손가락" style="height: 200px; vertical-align: middle;">
         </button>
       </div>
     </div>
-    
     <div class="question" data-group="plexus">
-        <h2 class="area-title">💪 팔 저림/통증 문진</h2>   
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
       <strong>팔: 통증/저림이 언제부터 시작되었나요?</strong>
       <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
         <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
       </div>
     </div>
-<!-- 손가락 관련 증상 -->
-<div class="question" data-group="plexus">
-  <h2 class="area-title">💪 팔 저림/감각이상</h2>
-  <strong>특정 손가락에 증상이 있나요?</strong>
-  <div class="button-grid">
-    <button type="button" class="option-button" data-name="plexus_finger" data-value="thumb_index_middle">엄지~중지</button>
-    <button type="button" class="option-button" data-name="plexus_finger" data-value="ring_little">약지~새끼손가락</button>
-    <button type="button" class="option-button" data-name="plexus_finger" data-value="entire_hand">전체 손</button>
-    <button type="button" class="option-button" data-name="plexus_finger" data-value="none">해당 없음</button>
-  </div>
-</div>
-<!-- 악화 자세 -->
-<div class="question" data-group="plexus">
-  <h2 class="area-title">💪 팔 저림/감각이상</h2>
-  <strong>어떤 자세나 동작에서 저림이 심해지나요?</strong>
-  <div class="button-grid">
-    <button type="button" class="option-button" data-name="plexus_trigger" data-value="neck_movement">목을 돌릴 때</button>
-    <button type="button" class="option-button" data-name="plexus_trigger" data-value="arm_raise">팔을 머리 위로 올릴 때</button>
-    <button type="button" class="option-button" data-name="plexus_trigger" data-value="elbow_flex">팔꿈치를 구부릴 때</button>
-    <button type="button" class="option-button" data-name="plexus_trigger" data-value="wrist_flex">손목을 구부릴 때</button>
-    <button type="button" class="option-button" data-name="plexus_trigger" data-value="none">특이 없음</button>
-  </div>
-</div>
-
-<!-- 증상 특성 -->
-<div class="question" data-group="plexus">
-  <h2 class="area-title">💪 팔 저림/감각이상</h2>
-  <strong>저림의 양상은 어떤가요?</strong>
-  <div class="button-grid">
-    <button type="button" class="option-button" data-name="plexus_char" data-value="tingling">찌릿찌릿/전기 감각</button>
-    <button type="button" class="option-button" data-name="plexus_char" data-value="burning">화끈거림</button>
-    <button type="button" class="option-button" data-name="plexus_char" data-value="dull">묵직하고 둔함</button>
-    <button type="button" class="option-button" data-name="plexus_char" data-value="cold">차가운 느낌</button>
-  </div>
-</div>
-
-<!-- 수면 중 변화 -->
-<div class="question" data-group="plexus">
-  <h2 class="area-title">💪 팔 저림/감각이상</h2>
-  <strong>수면 중 저림이 있나요?</strong>
-  <div class="button-grid">
-    <button type="button" class="option-button" data-name="plexus_night" data-value="worse_night">밤에 저림 심해짐</button>
-    <button type="button" class="option-button" data-name="plexus_night" data-value="no_change">밤낮 관계 없음</button>
-  </div>
-</div>
     <div class="question" data-group="plexus">
-        <h2 class="area-title">💪 팔 저림/통증 문진</h2>
-      <strong>팔: 관련 과거 병력이 있나요?(없으면 다음)</strong>
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>특정 손가락에 증상이 있나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="arm_hist" data-value="breast_surgery">유방암 수술/림프절 절제</button>
-        <button type="button" class="option-button" data-name="arm_hist" data-value="radiation">방사선 치료 병력</button>
-        <button type="button" class="option-button" data-name="arm_hist" data-value="diabetic_neuropathy">당뇨병성 신경병증</button>
-        <button type="button" class="option-button" data-name="arm_hist" data-value="none">없음</button>
+        <button type="button" class="option-button" data-name="plexus_finger" data-value="thumb_index_middle">엄지~중지</button>
+        <button type="button" class="option-button" data-name="plexus_finger" data-value="ring_little">약지~새끼손가락</button>
+        <button type="button" class="option-button" data-name="plexus_finger" data-value="entire_hand">전체 손</button>
+        <button type="button" class="option-button" data-name="plexus_finger" data-value="none">없음</button>
       </div>
     </div>
     <div class="question" data-group="plexus">
-        <h2 class="area-title">💪 팔 저림/통증 문진</h2>
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>어떤 자세/동작에서 저림이 심해지나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="plexus_trigger" data-value="neck_movement">목을 돌릴 때</button>
+        <button type="button" class="option-button" data-name="plexus_trigger" data-value="arm_raise">팔 머리 위로 올릴 때</button>
+        <button type="button" class="option-button" data-name="plexus_trigger" data-value="elbow_flex">팔꿈치 구부릴 때</button>
+        <button type="button" class="option-button" data-name="plexus_trigger" data-value="wrist_flex">손목 구부릴 때</button>
+        <button type="button" class="option-button" data-name="plexus_trigger" data-value="none">특이 없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="plexus">
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>저림: 양상은 어떤가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="plexus_char" data-value="tingling">찌릿/전기 감각</button>
+        <button type="button" class="option-button" data-name="plexus_char" data-value="burning">화끈거림</button>
+        <button type="button" class="option-button" data-name="plexus_char" data-value="dull">둔함/묵직</button>
+        <button type="button" class="option-button" data-name="plexus_char" data-value="cold">차가운 느낌</button>
+      </div>
+    </div>
+    <div class="question" data-group="plexus">
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>수면 중 저림이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="plexus_night" data-value="worse_night">밤에 악화</button>
+        <button type="button" class="option-button" data-name="plexus_night" data-value="no_change">밤낮 관계 없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="plexus">
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
+      <strong>팔: 관련 과거 병력이 있나요? (없으면 다음)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="plexus_hist" data-value="breast_surgery">유방암 수술/림프절 절제</button>
+        <button type="button" class="option-button" data-name="plexus_hist" data-value="radiation">방사선 치료 병력</button>
+        <button type="button" class="option-button" data-name="plexus_hist" data-value="diabetic_neuropathy">당뇨병성 신경병증</button>
+        <button type="button" class="option-button" data-name="plexus_hist" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="plexus">
+      <h2 class="area-title">💪 팔 저림/감각이상 문진</h2>
       <strong>팔: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-      <div class="pain-description" style="font-size:1.25rem;">
-        <strong>0점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-        전혀 아프지 않음<br>
-        <strong>5점:</strong>
-        <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-        일상 지장 없지만 신경 쓰임<br>
-        <strong>10점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-        견디기 어려울 정도로 심함
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
       </div>
       <div class="pain-grid">
-        <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-        <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-        <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-        <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-        <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-        <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-        <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-        <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-        <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-        <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-        <button type="button" class="score-button" data-name="score" data-score="10">10</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="plexus_score" data-score="10">10</button>
       </div>
     </div>
+
+    <!-- ====== 어깨 문진 (shoulder) ====== -->
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 통증 위치는 어디인가요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="sh_location" data-value="anterior">앞 어깨</button>
-        <button type="button" class="option-button" data-name="sh_location" data-value="lateral">측면</button>
-        <button type="button" class="option-button" data-name="sh_location" data-value="posterior">후면</button>
-        <button type="button" class="option-button" data-name="sh_location" data-value="ac">쇄골 상부</button>
+        <button type="button" class="option-button" data-name="shoulder_location" data-value="anterior">앞 어깨</button>
+        <button type="button" class="option-button" data-name="shoulder_location" data-value="lateral">측면</button>
+        <button type="button" class="option-button" data-name="shoulder_location" data-value="posterior">후면</button>
+        <button type="button" class="option-button" data-name="shoulder_location" data-value="ac">쇄골 상부</button>
       </div>
     </div>
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 통증이 언제부터 시작되었나요?</strong>
       <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
         <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
@@ -672,1135 +616,1077 @@
       </div>
     </div>
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 어떤 동작에서 통증이 악화되나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="sh_trigger" data-value="raise">팔 머리 위로 올릴 때</button>
-        <button type="button" class="option-button" data-name="sh_trigger" data-value="behind">등 뒤로 돌릴 때</button>
-        <button type="button" class="option-button" data-name="sh_trigger" data-value="dress_wash">옷 입기/머리 감을 때</button>
+        <button type="button" class="option-button" data-name="shoulder_trigger" data-value="raise">팔 머리 위로 올릴 때</button>
+        <button type="button" class="option-button" data-name="shoulder_trigger" data-value="behind">등 뒤로 돌릴 때</button>
+        <button type="button" class="option-button" data-name="shoulder_trigger" data-value="dress_wash">옷 입기/머리 감을 때</button>
       </div>
     </div>
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 밤에 통증이 있나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="sh_nocturnal" data-value="side_sleep">옆으로 눕기 어려움</button>
-        <button type="button" class="option-button" data-name="sh_nocturnal" data-value="wake_pain">자다 깰 정도 통증</button>
+        <button type="button" class="option-button" data-name="shoulder_nocturnal" data-value="side_sleep">옆으로 눕기 어려움</button>
+        <button type="button" class="option-button" data-name="shoulder_nocturnal" data-value="wake_pain">자다 깰 정도 통증</button>
       </div>
     </div>
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
-      <strong>어깨: 동반 증상이 있나요?(없으면 다음)</strong>  
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <strong>어깨: 동반 증상이 있나요? (없으면 다음)</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="sh_symp" data-value="chopsticks_sh">젓가락질 힘듦</button>
-        <button type="button" class="option-button" data-name="sh_symp" data-value="sound">어깨에서 소리남</button>
-        <button type="button" class="option-button" data-name="sh_symp" data-value="reduced">어깨 범위가 줄어듦</button>
+        <button type="button" class="option-button" data-name="shoulder_symp" data-value="chopsticks_sh">젓가락질 힘듦</button>
+        <button type="button" class="option-button" data-name="shoulder_symp" data-value="sound">어깨에서 소리남</button>
+        <button type="button" class="option-button" data-name="shoulder_symp" data-value="reduced">어깨 가동범위 감소</button>
       </div>
     </div>
-     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+    <div class="question" data-group="shoulder">
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 관련 과거 병력이 있나요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="sh_hist" data-value="rotator_cuff">회전근개 파열/수술</button>
-        <button type="button" class="option-button" data-name="sh_hist" data-value="diabetes_thyroid">당뇨/갑상선 질환</button>
-        <button type="button" class="option-button" data-name="sh_hist" data-value="adhesive_capsulitis">오십견(유착성 관절낭염)</button>
+        <button type="button" class="option-button" data-name="shoulder_hist" data-value="rotator_cuff">회전근개 파열/수술</button>
+        <button type="button" class="option-button" data-name="shoulder_hist" data-value="diabetes_thyroid">당뇨/갑상선 질환</button>
+        <button type="button" class="option-button" data-name="shoulder_hist" data-value="adhesive_capsulitis">오십견(유착성 관절낭염)</button>
       </div>
     </div>
     <div class="question" data-group="shoulder">
-        <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
+      <h2 class="area-title">🤷‍♀️ 어깨 문진</h2>
       <strong>어깨: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-      <div class="pain-description" style="font-size:1.25rem;">
-        <strong>0점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-        전혀 아프지 않음<br>
-        <strong>5점:</strong>
-        <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-        일상 지장 없지만 신경 쓰임<br>
-        <strong>10점:</strong>
-        <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-        견디기 어려울 정도로 심함
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
       </div>
       <div class="pain-grid">
-        <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-        <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-        <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-        <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-        <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-        <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-        <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-        <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-        <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-        <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-        <button type="button" class="score-button" data-name="score" data-score="10">10</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="shoulder_score" data-score="10">10</button>
       </div>
-    </div>    
+    </div>
+
+    <!-- ====== 팔/손 통증 (arm_hand) 문진 ====== -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
       <strong>팔/손: 통증 위치는 어디인가요?</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="arm_location" data-value="upper_arm">
-          위팔<br>
-          <img src="image/arm_upper_arm.png" alt="위팔" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="arm_location" data-value="upper_arm">위팔<br>
+          <img src="image/arm_upper_arm.png" alt="위팔" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="arm_location" data-value="elbow">
-          팔꿈치<br>
-          <img src="image/arm_elbow.png" alt="팔꿈치" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="arm_location" data-value="elbow">팔꿈치<br>
+          <img src="image/arm_elbow.png" alt="팔꿈치" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="arm_location" data-value="forearm">
-          아래팔<br>
-          <img src="image/arm_forearm.png" alt="아래팔" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="arm_location" data-value="forearm">아래팔<br>
+          <img src="image/arm_forearm.png" alt="아래팔" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="arm_location" data-value="wrist">
-          손목<br>
-          <img src="image/arm_wrist.png" alt="손목" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="arm_location" data-value="wrist">손목<br>
+          <img src="image/arm_wrist.png" alt="손목" style="height: 200px; vertical-align: middle;">
         </button>
-        <button type="button" class="option-button" data-name="arm_location" data-value="hand">
-          손/손가락<br>
-          <img src="image/arm_hand.png" alt="손/손가락" style="height: 200px;vertical-align:middle;">
+        <button type="button" class="option-button" data-name="arm_location" data-value="hand">손/손가락<br>
+          <img src="image/arm_hand.png" alt="손/손가락" style="height: 200px; vertical-align: middle;">
         </button>
       </div>
     </div>
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
       <strong>팔/손: 통증이 언제부터 시작되었나요?</strong>
       <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
         <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
         <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
       </div>
     </div>
-    <!-- 2. 팔/손: 주요 증상 (복수 선택) -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 아래 증상 중 해당되는 것을 모두 선택해 주세요. <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 주요 증상은 무엇인가요? (복수 선택 가능)</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="arm_symptom" data-value="paresthesia">감각이상</button>
         <button type="button" class="option-button" data-name="arm_symptom" data-value="weakness">힘 빠짐</button>
-        <button type="button" class="option-button" data-name="arm_symptom" data-value="night_worse">야간에 더 심해짐</button>
-        <button type="button" class="option-button" data-name="arm_symptom" data-value="none">해당사항 없음</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="night_worse">야간에 악화</button>
+        <button type="button" class="option-button" data-name="arm_symptom" data-value="none">특이 없음</button>
       </div>
     </div>
-    
-    <!-- 3. 팔/손: 최근 다친 적(외상)이 있나요? -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 최근 다친 적(외상)이 있나요?</strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 최근 외상이 있었나요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="arm_trauma" data-value="yes">예</button>
         <button type="button" class="option-button" data-name="arm_trauma" data-value="no">아니오</button>
       </div>
     </div>
-    
-    <!-- 4. 팔/손: 어떤 동작/자세에서 통증이 더 심해지나요? (복수 선택) -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 어떤 동작/자세에서 통증이 더 심해지나요? <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 어떤 동작/자세에서 통증이 심해지나요? (복수 선택 가능)</strong>
       <div class="button-grid">
-        <button type="button" class="option-button" data-name="arm_trigger" data-value="flexion">손/손목을 굽힐 때</button>
-        <button type="button" class="option-button" data-name="arm_trigger" data-value="extension">펴거나 돌릴 때</button>
-        <button type="button" class="option-button" data-name="arm_trigger" data-value="grip">쥘 때</button>
-        <button type="button" class="option-button" data-name="arm_trigger" data-value="posture">특정 자세에서</button>
-        <button type="button" class="option-button" data-name="arm_trigger" data-value="snap">손가락 움직일 때 딸깍/걸림</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="flexion">손목 굴곡 시</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="extension">손목 신전 시</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="grip">악력 사용 시</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="posture">특정 자세 시</button>
+        <button type="button" class="option-button" data-name="arm_trigger" data-value="snap">손가락 딸깍/걸림</button>
         <button type="button" class="option-button" data-name="arm_trigger" data-value="none">없음</button>
       </div>
     </div>
-    
-    <!-- 5. 팔/손: 아래 증상 중 해당되는 것이 있나요? (복수 선택) -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 아래 증상 중 해당되는 것이 있나요? <span style="font-size:1rem; color:#1976d2;">(복수 선택 가능 / 없으면 ‘다음’으로)</span></strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 아래 증상이 있나요? (복수 선택 가능)</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="arm_swelling" data-value="swelling">부종(붓기)</button>
         <button type="button" class="option-button" data-name="arm_swelling" data-value="redness">발적(빨개짐)</button>
-        <button type="button" class="option-button" data-name="arm_swelling" data-value="heat">열감(뜨거움)</button>
+        <button type="button" class="option-button" data-name="arm_swelling" data-value="heat">열감</button>
         <button type="button" class="option-button" data-name="arm_swelling" data-value="skin_change">피부 변화</button>
         <button type="button" class="option-button" data-name="arm_swelling" data-value="none">없음</button>
       </div>
     </div>
-    
-    <!-- 6. 팔/손: 아침에 손이 뻣뻣한가요? -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 아침에 손이 뻣뻣한가요?</strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 아침 뻣뻣함이 있나요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="arm_morning_stiff" data-value="yes">예</button>
         <button type="button" class="option-button" data-name="arm_morning_stiff" data-value="no">아니오</button>
       </div>
     </div>
-    
-    <!-- 7. 팔/손: 결절(만져지는 혹/덩어리), 피부 밑에 딱딱한 부분, 손가락이 잘 펴지지 않는 증상이 있나요? -->
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-      <strong>팔/손: 결절(만져지는 혹/덩어리), 피부 밑에 딱딱한 부분, 손가락이 잘 펴지지 않는 증상이 있나요?</strong>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 결절·피부 밑 단단함·손가락 굴곡 제한 증상이 있나요?</strong>
       <div class="button-grid">
         <button type="button" class="option-button" data-name="arm_nodule" data-value="yes">예</button>
         <button type="button" class="option-button" data-name="arm_nodule" data-value="no">아니오</button>
       </div>
     </div>
-
     <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-        <strong>팔/손: 담당의사에게 추가로 전달하고 싶은 내용, 또는 궁금한 점이 있다면 자유롭게 입력해 주세요.</strong>
-        <textarea id="arm_hand_impression" style="width:100%;min-height:80px;border-radius:8px;font-size:1.1rem;padding:10px;margin-top:8px;"></textarea>
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 추가로 전달하고 싶은 내용이 있다면 입력해 주세요.</strong>
+      <textarea id="arm_hand_impression" style="width:100%;min-height:80px;border-radius:8px;font-size:1.1rem;padding:10px;margin-top:8px;"></textarea>
+    </div>
+    <div class="question" data-group="arm_hand">
+      <h2 class="area-title">✋ 팔/손 통증 문진</h2>
+      <strong>팔/손: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
       </div>
-      <div class="question" data-group="arm_hand">
-        <h2 class="area-title">✋ 팔/손 문진</h2>
-        <strong>팔/손: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-        <div class="pain-description" style="font-size:1.25rem;">
-          <strong>0점:</strong>
-          <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-          전혀 아프지 않음<br>
-          <strong>5점:</strong>
-          <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-          일상 지장 없지만 신경 쓰임<br>
-          <strong>10점:</strong>
-          <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-          견디기 어려울 정도로 심함
-        </div>
-        <div class="pain-grid">
-          <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-          <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-          <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-          <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-          <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-          <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-          <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-          <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-          <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-          <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-          <button type="button" class="score-button" data-name="score" data-score="10">10</button>
-        </div>
+      <div class="pain-grid">
+        <button type="button" class="score-button" data-name="arm_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="arm_score" data-score="10">10</button>
       </div>
-<!-- 허리/고관절/골반 문진지 질문 부분만 추출 -->
-<div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 통증/불편 부위가 어디인가요? (복수 선택 가능)</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="lh_location" data-value="lumbar">
-        허리<br>
-        <img src="image/lumbohip_lumbar.png" alt="허리" style="height: 140px; vertical-align: middle;">
-      </button>
-      <button type="button" class="option-button" data-name="lh_location" data-value="buttock">
-        엉덩이/둔부<br>
-        <img src="image/lumbohip_buttock.png" alt="엉덩이/둔부" style="height: 140px; vertical-align: middle;">
-      </button>
-      <button type="button" class="option-button" data-name="lh_location" data-value="hip_joint">
-        고관절(엉덩이 관절)<br>
-        <img src="image/lumbohip_hip_joint.png" alt="고관절(엉덩이 관절)" style="height: 140px; vertical-align: middle;">
-      </button>
-      <button type="button" class="option-button" data-name="lh_location" data-value="groin">
-        사타구니<br>
-        <img src="image/lumbohip_groin.png" alt="사타구니" style="height: 140px; vertical-align: middle;">
-      </button>
-      <button type="button" class="option-button" data-name="lh_location" data-value="coccyx">
-        꼬리뼈<br>
-        <img src="image/lumbohip_coccyx.png" alt="꼬리뼈" style="height: 140px; vertical-align: middle;">
-      </button>
     </div>
-  </div>  
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 통증이 언제부터 시작되었나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
+
+    <!-- ====== 등/늑골 문진 (thoracic) ====== -->
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>등/늑골: 통증 위치는 어디인가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_location" data-value="mid_back">등 중앙</button>
+        <button type="button" class="option-button" data-name="thoracic_location" data-value="scapular">양 견갑골 사이</button>
+        <button type="button" class="option-button" data-name="thoracic_location" data-value="ribs_unilateral">한쪽 갈비뼈</button>
+        <button type="button" class="option-button" data-name="thoracic_location" data-value="ribs_bilateral">양쪽 갈비뼈</button>
+      </div>
     </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>등/늑골: 통증이 언제부터 시작되었나요?</strong>
+      <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
+        <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="zoster">대상포진 이후</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>목을 굽히거나 돌릴 때 통증이 심해지나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_neckmove" data-value="yes">예</button>
+        <button type="button" class="option-button" data-name="thoracic_neckmove" data-value="no">아니오</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>팔/손에 저림이나 감각 이상이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_armnumb" data-value="yes">예</button>
+        <button type="button" class="option-button" data-name="thoracic_armnumb" data-value="no">아니오</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>어떤 동작/자세에서 통증이 악화되나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_trigger" data-value="rotate">몸통 비틀기</button>
+        <button type="button" class="option-button" data-name="thoracic_trigger" data-value="deep_breath">깊게 숨 쉴 때</button>
+        <button type="button" class="option-button" data-name="thoracic_trigger" data-value="cough">기침/재채기</button>
+        <button type="button" class="option-button" data-name="thoracic_trigger" data-value="none">특이 없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>통증 양상은 어떤가요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_char" data-value="stabbing">칼로 찌르는 듯</button>
+        <button type="button" class="option-button" data-name="thoracic_char" data-value="band">띠 모양</button>
+        <button type="button" class="option-button" data-name="thoracic_char" data-value="dull">묵직·압박감</button>
+        <button type="button" class="option-button" data-name="thoracic_char" data-value="burning">따갑거나 화끈거림</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>피부 감각 이상이나 물집이 있었나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_skin" data-value="itching">따가움/가려움</button>
+        <button type="button" class="option-button" data-name="thoracic_skin" data-value="vesicles">대상포진 물집</button>
+        <button type="button" class="option-button" data-name="thoracic_skin" data-value="none">특이 없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>눌렀을 때 통증이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_press" data-value="muscle">근육 부위 눌렀을 때</button>
+        <button type="button" class="option-button" data-name="thoracic_press" data-value="joint">관절 부위 눌렀을 때</button>
+        <button type="button" class="option-button" data-name="thoracic_press" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>관련 과거 병력이 있나요? (없으면 다음)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="thoracic_hist" data-value="zoster">대상포진</button>
+        <button type="button" class="option-button" data-name="thoracic_hist" data-value="ra_as">류마티스/강직성 척추염</button>
+        <button type="button" class="option-button" data-name="thoracic_hist" data-value="spine_surgery">흉추 수술</button>
+      </div>
+    </div>
+    <div class="question" data-group="thoracic">
+      <h2 class="area-title">🦴 등/늑골 문진</h2>
+      <strong>현재 통증 정도는 어느 정도인가요? (0~10)</strong>
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
+      </div>
+      <div class="pain-grid">
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="thoracic_score" data-score="10">10</button>
+      </div>
+    </div>
+
+    <!-- ====== 허리/고관절/골반 문진 (lumbohip) ====== -->
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>통증/불편 부위는 어디인가요? (복수 선택 가능)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="lumbohip_location" data-value="lumbar">허리<br>
+          <img src="image/lumbohip_lumbar.png" alt="허리" style="height: 140px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="lumbohip_location" data-value="buttock">엉덩이/둔부<br>
+          <img src="image/lumbohip_buttock.png" alt="엉덩이/둔부" style="height: 140px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="lumbohip_location" data-value="hip_joint">고관절<br>
+          <img src="image/lumbohip_hip_joint.png" alt="고관절" style="height: 140px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="lumbohip_location" data-value="groin">사타구니<br>
+          <img src="image/lumbohip_groin.png" alt="사타구니" style="height: 140px; vertical-align: middle;">
+        </button>
+        <button type="button" class="option-button" data-name="lumbohip_location" data-value="coccyx">꼬리뼈<br>
+          <img src="image/lumbohip_coccyx.png" alt="꼬리뼈" style="height: 140px; vertical-align: middle;">
+        </button>
+      </div>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>통증이 언제부터 시작되었나요?</strong>
+      <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
+        <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
+      </div>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>어떤 증상이 있나요? (복수 선택 가능)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="radiating_leg">다리로 저림/뻗침</button>
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="local_pain">국소 통증</button>
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="weakness">힘 빠짐</button>
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="stiffness">뻣뻣함</button>
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="swelling">부종/붓기</button>
+        <button type="button" class="option-button" data-name="lumbohip_symp" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>언제/어떤 상황에서 통증이 악화되나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="walking">걷거나 움직일 때</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="sitting">앉아 있을 때</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="bending">허리 숙일 때</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="extension">허리 펴기</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="rest">가만히 있을 때</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="night">밤/자다가 깸</button>
+        <button type="button" class="option-button" data-name="lumbohip_trigger" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>과거 병력/외상/수술이 있나요? (복수 선택 가능)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="lumbohip_hist" data-value="trauma">골절/낙상 등 외상</button>
+        <button type="button" class="option-button" data-name="lumbohip_hist" data-value="surgery">수술/시술</button>
+        <button type="button" class="option-button" data-name="lumbohip_hist" data-value="arthritis">관절염/류마티스</button>
+        <button type="button" class="option-button" data-name="lumbohip_hist" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>추가로 전달하고 싶은 내용이 있나요? (선택)</strong>
+      <textarea id="lumbohip_extra" style="width:100%; min-height:80px; border-radius:8px; font-size:1.1rem; padding:10px; margin-top:8px;"></textarea>
+    </div>
+    <div class="question" data-group="lumbohip">
+      <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
+      <strong>현재 통증 정도는 어느 정도인가요? (0~10)</strong>
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
+      </div>
+      <div class="pain-grid">
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="lumbohip_score" data-score="10">10</button>
+      </div>
+    </div>
+
+    <!-- ====== 다리 문진 (leg_pain_pain) ====== -->
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 통증이 언제부터 시작되었나요?</strong>
+      <div class="button-grid">
+        <!-- data-name="onset" 로 통일 -->
+        <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
+        <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 증상은 무엇인가요? (복수 선택 가능)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="leg_pain_symp" data-value="numbness">저림/감각 이상</button>
+        <button type="button" class="option-button" data-name="leg_pain_symp" data-value="pain">통증</button>
+        <button type="button" class="option-button" data-name="leg_pain_symp" data-value="weakness">힘 빠짐</button>
+        <button type="button" class="option-button" data-name="leg_pain_symp" data-value="swelling">부종/붓기</button>
+        <button type="button" class="option-button" data-name="leg_pain_symp" data-value="cramp">경련/쥐남</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 증상이 어느 부위에 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="leg_pain_location" data-value="thigh">허벅지</button>
+        <button type="button" class="option-button" data-name="leg_pain_location" data-value="calf">종아리</button>
+        <button type="button" class="option-button" data-name="leg_pain_location" data-value="foot">발</button>
+        <button type="button" class="option-button" data-name="leg_pain_location" data-value="toe">발가락</button>
+        <button type="button" class="option-button" data-name="leg_pain_location" data-value="whole_leg">전체</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 증상이 악화되는 상황은?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="leg_pain_trigger" data-value="walking">걷거나 오래 설 때</button>
+        <button type="button" class="option-button" data-name="leg_pain_trigger" data-value="rest">휴식/잘 때</button>
+        <button type="button" class="option-button" data-name="leg_pain_trigger" data-value="climb">계단 오르기</button>
+        <button type="button" class="option-button" data-name="leg_pain_trigger" data-value="sitting">앉아 있을 때</button>
+        <button type="button" class="option-button" data-name="leg_pain_trigger" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 동반 증상이나 특이사항이 있나요?</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="leg_pain_addsymp" data-value="color_change">색 변화</button>
+        <button type="button" class="option-button" data-name="leg_pain_addsymp" data-value="temperature">온도 변화</button>
+        <button type="button" class="option-button" data-name="leg_pain_addsymp" data-value="ulcer">상처/궤양</button>
+        <button type="button" class="option-button" data-name="leg_pain_addsymp" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 과거 진단/수술/외상이 있나요? (복수 선택, 없으면 다음)</strong>
+      <div class="button-grid">
+        <button type="button" class="option-button" data-name="leg_pain_history" data-value="spine">척추질환 진단</button>
+        <button type="button" class="option-button" data-name="leg_pain_history" data-value="dvt">혈전증/혈관질환</button>
+        <button type="button" class="option-button" data-name="leg_pain_history" data-value="trauma">외상/골절</button>
+        <button type="button" class="option-button" data-name="leg_pain_history" data-value="none">없음</button>
+      </div>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 추가로 전달할 내용이 있다면 입력해 주세요.</strong>
+      <textarea id="leg_pain_pain_extra" style="width:100%; min-height:80px; border-radius:8px; font-size:1.1rem; padding:10px; margin-top:8px;"></textarea>
+    </div>
+    <div class="question" data-group="leg_pain">
+      <h2 class="area-title">🦵 다리 문진</h2>
+      <strong>다리: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
+      <div class="pain-description">
+        <strong>0점:</strong> 😀 전혀 아프지 않음<br>
+        <strong>5점:</strong> 😐 일상 지장 있지만 견딜만<br>
+        <strong>10점:</strong> 😫 견디기 어려운 통증
+      </div>
+      <div class="pain-grid">
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="0">0</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="1">1</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="2">2</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="3">3</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="4">4</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="5">5</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="6">6</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="7">7</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="8">8</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="9">9</button>
+        <button type="button" class="score-button" data-name="leg_pain_score" data-score="10">10</button>
+      </div>
+    </div>
+
+    <!-- ─── 네비게이션 버튼 ─── -->
+    <div style="text-align:center;">
+      <button type="button" class="nav-button" id="prevBtn">이전</button>
+      <button type="button" class="nav-button" id="nextBtn">다음</button>
+      <button type="submit" class="nav-button" id="submitBtn">제출</button>
+    </div>
+
+  </form>
+
+  <div id="thankyou" style="display:none; text-align:center; font-size:1.2rem;">
+    ✔️ 설문이 정상적으로 제출되었습니다.
   </div>
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 어떤 증상이 있나요? (복수 선택 가능)</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="lh_symp" data-value="radiating_leg">다리로 저림/뻗침</button>
-      <button type="button" class="option-button" data-name="lh_symp" data-value="local_pain">주변으로 퍼지지 않음</button>
-      <button type="button" class="option-button" data-name="lh_symp" data-value="weakness">힘빠짐</button>
-      <button type="button" class="option-button" data-name="lh_symp" data-value="stiffness">뻣뻣함</button>
-      <button type="button" class="option-button" data-name="lh_symp" data-value="swelling">부종/붓기</button>
-      <button type="button" class="option-button" data-name="lh_symp" data-value="none">특이 증상 없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 언제 통증이 더 심해지나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="walking">걷거나 움직일 때</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="sitting">앉아 있을 때</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="bending">허리 숙일 때</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="extension">허리 펼 때</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="rest">가만히 있을 때</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="night">밤/자다가 깸</button>
-      <button type="button" class="option-button" data-name="lh_trigger" data-value="none">특이 없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 과거 병력/외상/수술이 있나요? (복수 선택, 없으면 다음)</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="lh_hist" data-value="trauma">골절/낙상 등 외상</button>
-      <button type="button" class="option-button" data-name="lh_hist" data-value="surgery">수술/시술</button>
-      <button type="button" class="option-button" data-name="lh_hist" data-value="arthritis">관절염/류마티스</button>
-      <button type="button" class="option-button" data-name="lh_hist" data-value="none">없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 추가로 전달하고 싶은 내용이 있다면 입력해 주세요. (선택)</strong>
-    <textarea id="lumbohip_extra" style="width:100%;min-height:80px;border-radius:8px;font-size:1.1rem;padding:10px;margin-top:8px;"></textarea>
-  </div>
-  <div class="question" data-group="lumbohip">
-    <h2 class="area-title">🦴 허리·고관절·골반 문진</h2>
-    <strong>허리/고관절/골반: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-    <div class="pain-description" style="font-size:1.25rem;">
-      <strong>0점:</strong>
-      <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-      전혀 아프지 않음<br>
-      <strong>5점:</strong>
-      <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-      일상 지장 없지만 신경 쓰임<br>
-      <strong>10점:</strong>
-      <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-      견디기 어려울 정도로 심함
-    </div>
-    <div class="pain-grid">
-      <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-      <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-      <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-      <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-      <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-      <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-      <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-      <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-      <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-      <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-      <button type="button" class="score-button" data-name="score" data-score="10">10</button>
-    </div>
-  </div>
 
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 통증이 언제부터 시작되었나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="onset" data-value="sudden">갑자기 며칠 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="gradual">서서히 수주~수개월 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="recurrent">반복적으로 수년 전부터</button>
-      <button type="button" class="option-button" data-name="onset" data-value="trauma">외상/수술 이후</button>
-    </div>
-  </div>  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 증상은 무엇인가요? (복수 선택 가능)</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="leg_symp" data-value="numbness">저림/감각이상</button>
-      <button type="button" class="option-button" data-name="leg_symp" data-value="pain">통증</button>
-      <button type="button" class="option-button" data-name="leg_symp" data-value="weakness">힘빠짐</button>
-      <button type="button" class="option-button" data-name="leg_symp" data-value="swelling">붓기/부종</button>
-      <button type="button" class="option-button" data-name="leg_symp" data-value="cramp">쥐남/경련</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 증상이 어느 부위에 있나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="leg_location" data-value="thigh">허벅지</button>
-      <button type="button" class="option-button" data-name="leg_location" data-value="calf">종아리</button>
-      <button type="button" class="option-button" data-name="leg_location" data-value="foot">발</button>
-      <button type="button" class="option-button" data-name="leg_location" data-value="toe">발가락</button>
-      <button type="button" class="option-button" data-name="leg_location" data-value="whole_leg">전체</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 언제/어떤 상황에서 증상이 악화되나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="leg_trigger" data-value="walking">걷거나 오래 설 때</button>
-      <button type="button" class="option-button" data-name="leg_trigger" data-value="rest">휴식/잘 때</button>
-      <button type="button" class="option-button" data-name="leg_trigger" data-value="climb">계단 오르기</button>
-      <button type="button" class="option-button" data-name="leg_trigger" data-value="sitting">앉아있을 때</button>
-      <button type="button" class="option-button" data-name="leg_trigger" data-value="none">특이 없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 동반 증상이나 특이사항이 있나요?</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="leg_addsymp" data-value="color_change">색 변화(창백/검붉음)</button>
-      <button type="button" class="option-button" data-name="leg_addsymp" data-value="temperature">온도 변화(차가움/뜨거움)</button>
-      <button type="button" class="option-button" data-name="leg_addsymp" data-value="ulcer">상처/궤양</button>
-      <button type="button" class="option-button" data-name="leg_addsymp" data-value="none">없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 과거 진단/수술/외상 등이 있나요? (복수 선택, 없으면 다음)</strong>
-    <div class="button-grid">
-      <button type="button" class="option-button" data-name="leg_history" data-value="spine">척추질환 진단(디스크/협착증)</button>
-      <button type="button" class="option-button" data-name="leg_history" data-value="dvt">혈전증/혈관질환</button>
-      <button type="button" class="option-button" data-name="leg_history" data-value="trauma">외상/골절</button>
-      <button type="button" class="option-button" data-name="leg_history" data-value="none">특이 병력 없음</button>
-    </div>
-  </div>
-  
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 추가로 전달할 내용이 있다면 입력해 주세요.</strong>
-    <textarea id="leg_pain_extra" style="width:100%;min-height:80px;border-radius:8px;font-size:1.1rem;padding:10px;margin-top:8px;"></textarea>
-  </div>  
+  <!-- ─────────── 단일 <script> 블록 ─────────── -->
+  <script>
+    // ========== 변수 선언 ==========
+    const qs = [...document.querySelectorAll('.question')];
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    let idx = 0;
+    let selectedAreas = [];
+    let selectedArmTypes = [];
 
-  <div class="question" data-group="leg_pain">
-    <h2 class="area-title">🦵 다리 문진</h2>
-    <strong>다리: 현재 통증 정도는 어느 정도인가요? (0~10)</strong>
-    <div class="pain-description" style="font-size:1.25rem;">
-      <strong>0점:</strong>
-      <span style="font-size:2.2rem; vertical-align:middle;">😀</span>
-      전혀 아프지 않음<br>
-      <strong>5점:</strong>
-      <span style="font-size:2rem; vertical-align:middle; color:#888;">😐</span>
-      일상 지장 없지만 신경 쓰임<br>
-      <strong>10점:</strong>
-      <span style="font-size:2.2rem; vertical-align:middle;">😫</span>
-      견디기 어려울 정도로 심함
-    </div>
-    <div class="pain-grid">
-      <button type="button" class="score-button" data-name="score" data-score="0">0</button>
-      <button type="button" class="score-button" data-name="score" data-score="1">1</button>
-      <button type="button" class="score-button" data-name="score" data-score="2">2</button>
-      <button type="button" class="score-button" data-name="score" data-score="3">3</button>
-      <button type="button" class="score-button" data-name="score" data-score="4">4</button>
-      <button type="button" class="score-button" data-name="score" data-score="5">5</button>
-      <button type="button" class="score-button" data-name="score" data-score="6">6</button>
-      <button type="button" class="score-button" data-name="score" data-score="7">7</button>
-      <button type="button" class="score-button" data-name="score" data-score="8">8</button>
-      <button type="button" class="score-button" data-name="score" data-score="9">9</button>
-      <button type="button" class="score-button" data-name="score" data-score="10">10</button>
-    </div>
-  </div>
-
-  <div style="text-align:center;">
-    <button type="button" class="nav-button" id="prevBtn">이전</button>
-    <button type="button" class="nav-button" id="nextBtn">다음</button>
-    <button type="submit" class="nav-button" id="submitBtn" style="display:none;">제출</button>
-  </div>
-</form>
-<div id="thankyou" style="display:none; text-align:center; font-size:1.2rem;">
-  ✔️ 설문이 정상적으로 제출되었습니다.
-</div>
-
-<script>
-  const qs = [...document.querySelectorAll('.question')];
-  const next = document.getElementById('nextBtn');
-  const prev = document.getElementById('prevBtn');
-  const sub  = document.getElementById('submitBtn');
-  let idx = 0, selectedAreas = [], selectedArmTypes = [];
-
-  function getVisible() {
-    return qs
-      .map((q,i)=>({q,i}))
-      .filter(o=>o.q.style.display !== 'none')
-      .map(o=>o.i);
-  }
-
-  function showCurrent() {
-    const vis = getVisible(),
-          showIdx = vis[idx];
-          qs.forEach((q, i) => q.classList.toggle('active', i === showIdx));
-
-prev.style.display = idx === 0 ? 'none' : 'inline-block';
-
-// 수정된 조건
-const isLast = idx === vis.length - 1;
-const currentGroup = qs[showIdx]?.dataset.group;
-
-// arm_choice만 있는 경우에는 제출 버튼 숨기고 다음 버튼 표시
-if (isLast && currentGroup === 'arm_choice') {
-  next.style.display = 'inline-block';
-  sub.style.display = 'none';
-} else {
-  next.style.display = isLast ? 'none' : 'inline-block';
-  sub.style.display = isLast ? 'inline-block' : 'none';
-}
-}
-
-  document.addEventListener('DOMContentLoaded', () => {
-  showCurrent();
-  document.getElementById('submitBtn').style.display = 'none';
-  document.getElementById('nextBtn').style.display = 'inline-block';
-});
-  next.onclick = ()=>{ if(idx < getVisible().length-1) idx++; showCurrent(); };
-  prev.onclick = ()=>{ if(idx > 0) idx--; showCurrent(); };
-
-  // 1) “1. 통증 부위” 선택
-  document.querySelectorAll('.question[data-group="general"] .option-button')
-    .forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        btn.classList.toggle('selected');
-        const val = btn.dataset.value;
-        if (btn.classList.contains('selected')) selectedAreas.push(val);
-        else selectedAreas = selectedAreas.filter(x=>x!==val);
-        // 표시할 그룹 토글
-        qs.forEach(q=>{
-          const g = q.dataset.group;
-          q.style.display = (g==='pid'||g==='general'|| selectedAreas.includes(g)) ? '' : 'none';
-        });
-        // arm_choice 보이기/숨기기
-        const armChoice = document.querySelector('.question[data-group="arm_choice"]');
-        armChoice.style.display = selectedAreas.includes('arm') ? '' : 'none';
-        idx = 1; showCurrent();
-      });
-  });
-
-  // 2) “팔/손 중 어떤 문제인가요?” 선택
-  document.querySelectorAll('.question[data-group="arm_choice"] .option-button')
-    .forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        btn.classList.toggle('selected');
-        const val = btn.dataset.value;
-        if (btn.classList.contains('selected')) selectedArmTypes.push(val);
-        else selectedArmTypes = selectedArmTypes.filter(x=>x!==val);
-        // plexus / arm_hand 그룹 토글
-        document.querySelectorAll('.question[data-group="plexus"]')
-          .forEach(q=> q.style.display = selectedArmTypes.includes('plexus') ? '' : 'none');
-        document.querySelectorAll('.question[data-group="arm_hand"]')
-          .forEach(q=> q.style.display = selectedArmTypes.includes('arm_hand') ? '' : 'none');
-        // 현재 위치를 arm_choice 뒤로
-        idx = getVisible().indexOf(qs.indexOf(btn.closest('.question')));
-        showCurrent();
-      });
-  });
-
-  // 3) 그 외 모든 옵션 버튼 토글
-  document.querySelectorAll('.question:not([data-group="general"]):not([data-group="arm_choice"]) .option-button')
-    .forEach(btn=>{
-      btn.addEventListener('click', ()=> btn.classList.toggle('selected'));
-  });
-
-  // 4) 스코어 버튼 – **각 문항별로 독립 선택**
-  document.querySelectorAll('.score-button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const parentQ = btn.closest('.question');
-      parentQ.querySelectorAll('.score-button').forEach(sb=> sb.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
-  });
-
-  // 5) 제출 이벤트
-  document.getElementById('form').addEventListener('submit', e=>{
-    e.preventDefault();
-    // 환자정보 검증
-    const pid  = document.getElementById('patientIdInput').value.trim();
-    const pbdt = document.getElementById('patientBirthInput').value.trim();
-    if(!pid || !/^\d{8}$/.test(pbdt)) {
-      return alert('환자정보를 정확히 입력하세요.');
+    // ========== getVisibleIndices() ==========
+    function getVisibleIndices() {
+      return qs
+        .map((q, i) => ({ q, i }))
+        .filter(o => o.q.style.display !== 'none')
+        .map(o => o.i);
     }
 
-    // formData 준비
-    const formData = {
-      patient_id: pid,
-      patient_birth: pbdt,
-      area: [],       // 선택된 부위들 (plexus, arm_hand 등)
-      onset: '',
-      score: '',
-      details: [],
-      impression: []
+    // ========== showCurrent() ==========
+    function showCurrent() {
+      const vis = getVisibleIndices();
+      const showIdx = vis[idx];
+      qs.forEach((q, i) => q.classList.toggle('active', i === showIdx));
+
+      // 이전 버튼 토글
+      prevBtn.style.display = idx === 0 ? 'none' : 'inline-block';
+
+      // 마지막인지 체크
+      const isLast = idx === vis.length - 1;
+      const currentGroup = qs[showIdx]?.dataset.group;
+
+      // arm_choice 단독인 경우
+      if (isLast && currentGroup === 'arm_choice') {
+        nextBtn.style.display = 'inline-block';
+        submitBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = isLast ? 'none' : 'inline-block';
+        submitBtn.style.display = isLast ? 'inline-block' : 'none';
+      }
+    }
+
+    // ========== 초기화 (DOMContentLoaded) ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      showCurrent();
+      submitBtn.style.display = 'none';
+      nextBtn.style.display = 'inline-block';
+    });
+
+    // ========== next/prev 버튼 클릭 ==========
+    nextBtn.onclick = () => {
+      const vis = getVisibleIndices();
+      if (idx < vis.length - 1) idx++;
+      showCurrent();
+    };
+    prevBtn.onclick = () => {
+      if (idx > 0) idx--;
+      showCurrent();
     };
 
-    // 5-1) 일반 부위 수집 (1. 통증 부위)
-    document.querySelectorAll('.question[data-group="general"] .option-button.selected')
-      .forEach(btn=> formData.area.push(btn.dataset.value));
-
-    // 5-2) 팔(sub) 선택된 경우 병합
-    if (formData.area.includes('arm')) {
-      selectedArmTypes.forEach(type=>{
-        if (!formData.area.includes(type)) formData.area.push(type);
+    // ========== “1. 통증 부위” 선택 로직 ==========
+    document.querySelectorAll('.question[data-group="general"] .option-button')
+      .forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('selected');
+          const val = btn.dataset.value;
+          if (btn.classList.contains('selected')) {
+            selectedAreas.push(val);
+          } else {
+            selectedAreas = selectedAreas.filter(x => x !== val);
+          }
+          // 질문 토글
+          qs.forEach(q => {
+            const g = q.dataset.group;
+            q.style.display = (g === 'pid' || g === 'general' || selectedAreas.includes(g)) ? '' : 'none';
+          });
+          // arm_choice 토글
+          const armChoiceQ = document.querySelector('.question[data-group="arm_choice"]');
+          armChoiceQ.style.display = selectedAreas.includes('arm') ? '' : 'none';
+          idx = 1;
+          showCurrent();
+        });
       });
-    }
-    // 5-3) 이제 'arm' 자체는 제거 (sub group만 남김)
-    formData.area = formData.area.filter(a=> a !== 'arm');
 
-    // 5-4) onset 문자열화
-    formData.onset = formData.area.map(area=>{
-      const ob = document.querySelector(`.question[data-group="${area}"] .option-button[data-name="onset"].selected`);
-      return `${area}_${ob?ob.dataset.value:'N/A'}`;
-    }).join('\n');
-
-    // 5-5) score 문자열화
-    formData.score = formData.area.map(area=>{
-      const sb = document.querySelector(`.question[data-group="${area}"] .score-button.selected`);
-      return `${area}_${sb?sb.dataset.score:0}`;
-    }).join('\n');
-
-    // 5-6) 나머지 상세 정보 수집
-    document.querySelectorAll('.option-button.selected').forEach(btn=>{
-      const q  = btn.closest('.question');
-      const nm = btn.dataset.name || q.dataset.group;
-      const val= btn.dataset.value||btn.innerText;
-      // 생략: 'general', 'arm_choice' 그룹 텍스트 제외
-      if (q.dataset.group!=='general' && q.dataset.group!=='arm_choice') {
-        formData.details.push({ name: nm, value: val, text: btn.innerText.trim() });
-      }
-    });
-    // free-text
-    ['arm_hand_impression','lumbohip_extra','leg_pain_extra'].forEach(id=>{
-      const ta = document.getElementById(id);
-      if (ta && ta.value.trim()) {
-        formData.details.push({ name: id, value: ta.value.trim(), text: ta.value.trim() });
-      }
-    });
-
-    // Impression 생성 (기존 함수 유지)
-    formData.details.forEach(d=> formData[d.name] = d.value);
-    formData.impression = generateImpression({
-      area: formData.area,
-      onset: formData.onset,
-      score: formData.score,
-      ...formData
-    });
-
-    // 제출 상태 UI
-    sub.innerText = '제출 중...';
-    sub.disabled = true;
-
-    // Google Sheets 전송
-    fetch(SHEET_URL, { method:'POST', mode:'no-cors', body: JSON.stringify(formData) })
-      .then(()=>{
-        document.getElementById('form').style.display='none';
-        document.getElementById('thankyou').style.display='block';
-      })
-      .catch(err=>{
-        console.error(err);
-        alert('제출 중 오류가 발생했습니다.');
-      })
-      .finally(()=>{
-        sub.innerText = '제출';
-        sub.disabled = false;
+    // ========== “팔/손 세부 선택” 로직 ==========
+    document.querySelectorAll('.question[data-group="arm_choice"] .option-button')
+      .forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('selected');
+          const val = btn.dataset.value;
+          if (btn.classList.contains('selected')) {
+            selectedArmTypes.push(val);
+          } else {
+            selectedArmTypes = selectedArmTypes.filter(x => x !== val);
+          }
+          // plexus / arm_hand 토글
+          document.querySelectorAll('.question[data-group="plexus"]')
+            .forEach(q => q.style.display = selectedArmTypes.includes('plexus') ? '' : 'none');
+          document.querySelectorAll('.question[data-group="arm_hand"]')
+            .forEach(q => q.style.display = selectedArmTypes.includes('arm_hand') ? '' : 'none');
+          idx = getVisibleIndices().indexOf(qs.indexOf(btn.closest('.question')));
+          showCurrent();
+        });
       });
-  });
 
-    // Impression 생성 함수 (기존 로직 유지)
-    function generateImpression(sel) {
+    // ========== 기타 옵션 버튼 토글 ==========
+    document.querySelectorAll('.question:not([data-group="general"]):not([data-group="arm_choice"]) .option-button')
+      .forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('selected');
+        });
+      });
+
+    // ========== 스코어 버튼 로직 (그룹별 독립 선택) ==========
+    document.querySelectorAll('.score-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parentQ = btn.closest('.question');
+        parentQ.querySelectorAll('.score-button').forEach(sb => sb.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // ========== 인상/감별(Impression) 생성 함수들 ==========
+    function generateArmHandImpression(sel) {
       const imps = [];
-      // Face
-      if (sel.area.includes('face')) {
-        if (sel.face_char==='electric') imps.push('Trigeminal Neuralgia (삼차신경통)');
-        if (sel.face_location==='jaw' && sel.face_symp==='jaw_lock')
-          imps.push('TMJ Dysfunction (턱관절 기능장애)');
-        if (sel.face_char==='aching' && sel.onset==='gradual')
-          imps.push('Atypical Facial Pain (비전형 안면통)');
-        if (sel.face_trigger==='wash' && sel.face_location==='jaw')
-          imps.push('Hyoid Syndrome (설골 증후군)');
-        if (sel.face_symp==='sensory')
-          imps.push('Reflex Sympathetic Dystrophy (안면 RSD)');
+      // 감각이상
+      if (sel.arm_symptom === 'paresthesia') {
+        imps.push('Paresthesia: 말초신경 증상 고려');
       }
-      // Neck & Plexus
-      if (sel.area.includes('neck')) {
-        if (sel.neck_location==='scapular_neck' && sel.neck_posture==='rotate')
-          imps.push('Cervical Facet Syndrome (경추 관절면 증후군)');
-        if (sel.neck_rad==='upper_arm' || sel.neck_symp==='arm_sens')
-          imps.push('Cervical Radiculopathy (경추 신경근병증)');
-        if (sel.onset==='recurrent' && sel.neck_posture==='device')
-          imps.push('Fibromyalgia of Cervical Musculature (경추 근육 섬유근통)');
-        if (sel.onset==='trauma' && sel.neck_location==='lateral')
-          imps.push('Cervical Strain (경추 염좌)');
-        if (sel.neck_posture==='flex_ext' && sel.neck_location==='anterior')
-          imps.push('Longus Colli Tendinitis (롱구스콜리 건염)');
-        if (sel.neck_symp==='morning_stiff')
-          imps.push('Cervicothoracic Interspinous Bursitis (경흉추극간 점액낭염)');
+      // 힘 빠짐
+      if (sel.arm_symptom === 'weakness') {
+        imps.push('Tendon Injury or Neuropathy 의심');
       }
-      function generateImpression(sel) {
-  const imps = [];
-
-  // 📍 팔/손 통증 관련 감별 (arm_hand)
-  if (sel.area?.includes('arm')) {
-    if (sel.arm_symptom === 'snap') {
-      imps.push('Trigger Finger / 손가락 방아쇠 증후군');
-    }
-    if (sel.arm_symptom === 'weakness') {
-      imps.push('Tendon Rupture / 힘줄 손상 또는 건병증');
-    }
-    if (sel.arm_swelling === 'swelling' || sel.arm_swelling === 'redness') {
-      imps.push('Tenosynovitis / 활막염 또는 감염 의심');
-    }
-    if (sel.arm_morning_stiff === 'yes') {
-      imps.push('Rheumatoid Arthritis (류마티스 관절염)');
-    }
-    if (sel.arm_nodule === 'yes') {
-      imps.push('Dupuytren’s Contracture (수장건막 구축)');
-    }
-  }
-
-  // 📍 팔 저림/감각이상 관련 감별 (plexus)
-  if (sel.area?.includes('arm')) {
-    // Carpal Tunnel Syndrome
-    if (
-      sel.plexus_finger === 'thumb_index_middle' &&
-      sel.plexus_trigger === 'wrist_flex'
-    ) {
-      imps.push('Carpal Tunnel Syndrome (수근관 증후군)');
-    }
-
-    // Cubital Tunnel Syndrome
-    if (
-      sel.plexus_finger === 'ring_little' &&
-      sel.plexus_trigger === 'elbow_flex'
-    ) {
-      imps.push('Cubital Tunnel Syndrome (주관절터널 증후군)');
-    }
-
-    // Cervical Radiculopathy
-    if (
-      sel.plexus_dist === 'upper_arm' &&
-      sel.plexus_trigger === 'neck_movement'
-    ) {
-      imps.push('Cervical Radiculopathy (경추 신경근병증)');
-    }
-
-    // Thoracic Outlet Syndrome
-    if (
-      sel.plexus_dist === 'upper_arm' &&
-      sel.plexus_trigger === 'arm_raise'
-    ) {
-      imps.push('Thoracic Outlet Syndrome (흉곽출구 증후군)');
-    }
-
-    // Diabetic Neuropathy
-    if (sel.arm_hist === 'diabetic_neuropathy') {
-      imps.push('Diabetic Neuropathy (당뇨병성 신경병증)');
-    }
-
-    // Radiation-related Plexopathy
-    if (sel.arm_hist === 'radiation') {
-      imps.push('Radiation-induced Plexopathy (방사선 신경 손상)');
-    }
-  }
-
-  return imps;
-}
-      // Shoulder
-      if (sel.area.includes('shoulder')) {
-        if (sel.onset==='gradual' && sel.sh_nocturnal==='side_sleep')
-          imps.push('Shoulder Arthritis Pain (어깨 관절염 통증)');
-        if (sel.sh_location==='ac' && sel.sh_trigger==='behind')
-          imps.push('Acromioclavicular Joint Pain (견봉쇄골 관절통)');
-        if (sel.sh_location==='lateral' && sel.sh_trigger==='raise')
-          imps.push('Subdeltoid Bursitis (삼각근하 점액낭염)');
-        if (sel.sh_location==='anterior' && sel.sh_trigger==='dress_wash')
-          imps.push('Bicipital Tendinitis (이두건염)');
-        if (sel.sh_symp==='reduced')
-          imps.push('Adhesive Capsulitis (유착성 관절낭염)');
-        if (sel.sh_symp==='sound' && sel.sh_nocturnal==='wake_pain')
-          imps.push('Rotator Cuff Tear / Supraspinatus Syndrome');
-        if (sel.sh_location==='posterior' && sel.sh_trigger==='behind')
-          imps.push('Teres Major Syndrome (대원근 증후군)');
-        if (sel.sh_trigger==='behind' && sel.sh_symp==='reduced')
-          imps.push('Scapulocostal Syndrome (견갑늑골 증후군)');
-        if (sel.onset==='gradual' && sel.score>=8)
-          imps.push('Avascular Necrosis of GH Joint (견관절 무혈성 괴사) 감별권장');
-      }  
-      if (sel.area.includes('arm_hand')) {
-    imps.push(...generateArmHandImpression(sel));
+      // 야간 악화
+      if (sel.arm_symptom === 'night_worse') {
+        imps.push('야간 신경통 증후군 고려');
       }
-      if (sel.area.includes('headache')) {
-  imps.push(...generateHeadacheImpression(sel));
+      // 외상
+      if (sel.arm_trauma === 'yes') {
+        imps.push('Traumatic Injury 가능성 (건, 관절, 신경 손상)');
       }
-      if (sel.area && sel.area.includes('lumbohip')) {
-    imps.push(...generateLumboHipImpression(sel));
+      // 동작 악화
+      if (sel.arm_trigger === 'flexion') {
+        imps.push('Flexor Tendinopathy 의심');
       }
-      if (sel.score>=8)
-        imps.push('심한 통증: 적극적 진통 및 영상검사 권장');
-      if (!imps.length)
-        imps.push('추가 진찰 및 영상검사 권장');
+      if (sel.arm_trigger === 'extension') {
+        imps.push('Extensor Tendinopathy 의심');
+      }
+      if (sel.arm_trigger === 'grip') {
+        imps.push('Grip-related Strain 의심');
+      }
+      if (sel.arm_trigger === 'snap') {
+        imps.push('Trigger Finger 의심');
+      }
+      // 부종/피부 변화
+      if (sel.arm_swelling === 'swelling' || sel.arm_swelling === 'heat') {
+        imps.push('Tenosynovitis 또는 염증성 관절염 고려');
+      }
+      if (sel.arm_swelling === 'redness') {
+        imps.push('감염성 관절염 가능성 확인');
+      }
+      // 아침 뻣뻣함
+      if (sel.arm_morning_stiff === 'yes') {
+        imps.push('Rheumatoid Arthritis 감별 고려');
+      }
+      // 결절
+      if (sel.arm_nodule === 'yes') {
+        imps.push('Dupuytren’s Contracture 의심');
+      }
+      // 자유 서술
+      if (sel.arm_hand_impression) {
+        imps.push(`추가 정보: ${sel.arm_hand_impression}`);
+      }
+      return imps;
+    }
+
+    function generateHeadacheImpression(sel) {
+      const imps = [];
+      // 편두통
+      if (
+        (sel.headache_location === 'unilateral' || sel.headache_location === 'temporal') &&
+        (sel.headache_char === 'pulsating' || sel.headache_char === 'throbbing') &&
+        (sel.headache_symp === 'nausea' || sel.headache_symp === 'visual')
+      ) {
+        imps.push('Migraine (편두통) 의심');
+      }
+      // 긴장성 두통
+      if (
+        (sel.headache_location === 'frontal' || sel.headache_location === 'vertex') &&
+        (sel.headache_char === 'pressing' || sel.headache_char === 'dull')
+      ) {
+        imps.push('Tension-type Headache (긴장성 두통) 고려');
+      }
+      // 레드 플래그
+      if (
+        sel.onset === 'sudden' &&
+        (sel.headache_symp === 'fever' || sel.headache_symp === 'dizziness' || sel.headache_symp === 'weakness')
+      ) {
+        imps.push('Red flag: 응급 두통 감별 필요');
+      }
+      // 측두동맥염
+      if (sel.headache_location === 'temporal' && sel.headache_symp === 'visual') {
+        imps.push('Temporal Arteritis (측두동맥염) 감별');
+      }
+      // 군발 두통
+      if (sel.headache_location === 'periorbital' && sel.headache_symp === 'tearing') {
+        imps.push('Cluster Headache (군발두통) 고려');
+      }
+      // 두통 완화 요인으로 약물 반응
+      if (sel.headache_relief === 'medication') {
+        imps.push('Analgesic-responsive headache 고려');
+      }
+      // 과거 외상
+      if (sel.headache_hist === 'trauma') {
+        imps.push('Head Trauma 후 이차성 두통 감별');
+      }
+      // 진단 없으면 기본 권장
+      if (!imps.length) {
+        imps.push('진찰 및 영상검사 권장');
+      }
+      return imps;
+    }
+
+    function generateLumboHipImpression(sel) {
+      const imps = [];
+      // 요추 디스크 탈출증
+      if (
+        (sel.lumbohip_location?.includes('lumbar') || sel.lumbohip_symp?.includes('radiating_leg')) &&
+        (sel.lumbohip_trigger?.includes('bending') || sel.lumbohip_trigger?.includes('walking') ||
+         sel.lumbohip_symp?.includes('weakness') || sel.lumbohip_trigger?.includes('sitting'))
+      ) {
+        imps.push('Lumbar Disc Herniation 감별');
+      }
+      // 척추관 협착증
+      if (
+        (sel.lumbohip_location?.includes('lumbar') || sel.lumbohip_location?.includes('buttock')) &&
+        sel.lumbohip_symp?.includes('radiating_leg') &&
+        sel.lumbohip_trigger?.includes('walking')
+      ) {
+        imps.push('Spinal Stenosis 감별');
+      }
+      // 후관절 증후군
+      if (
+        sel.lumbohip_location?.includes('lumbar') &&
+        (sel.lumbohip_symp?.includes('local_pain') || sel.lumbohip_symp?.includes('stiffness') ||
+         sel.lumbohip_trigger?.includes('extension'))
+      ) {
+        imps.push('Facet Joint Syndrome 감별');
+      }
+      // 고관절 골관절염
+      if (
+        (sel.lumbohip_location?.includes('hip_joint') || sel.lumbohip_location?.includes('groin')) &&
+        (sel.lumbohip_symp?.includes('local_pain') || sel.lumbohip_symp?.includes('stiffness')) &&
+        (sel.lumbohip_trigger?.includes('walking') || sel.lumbohip_trigger?.includes('rest'))
+      ) {
+        imps.push('Hip Osteoarthritis 감별');
+      }
+      // 대전자 점액낭염
+      if (
+        (sel.lumbohip_location?.includes('buttock') || sel.lumbohip_location?.includes('hip_joint')) &&
+        sel.lumbohip_symp?.includes('local_pain')
+      ) {
+        imps.push('Trochanteric Bursitis 감별');
+      }
+      // 천장관절염
+      if (
+        sel.lumbohip_location?.includes('buttock') &&
+        (sel.lumbohip_symp?.includes('stiffness') || sel.lumbohip_hist?.includes('arthritis'))
+      ) {
+        imps.push('Sacroiliitis 감별');
+      }
+      // 압박골절
+      if (
+        sel.lumbohip_location?.includes('lumbar') &&
+        sel.lumbohip_hist?.includes('trauma')
+      ) {
+        imps.push('Compression Fracture 감별');
+      }
+      // 대퇴골두 무혈성 괴사
+      if (
+        sel.lumbohip_location?.includes('hip_joint') &&
+        (sel.lumbohip_hist?.includes('avascular_necrosis') || sel.lumbohip_hist?.includes('cancer'))
+      ) {
+        imps.push('Avascular Necrosis of Femoral Head 감별');
+      }
+      // 미골통
+      if (
+        sel.lumbohip_location?.includes('coccyx') &&
+        sel.lumbohip_trigger?.includes('sitting')
+      ) {
+        imps.push('Coccygodynia 감별');
+      }
+      // 레드 플래그 (감염/종양)
+      if (
+        sel.lumbohip_trigger?.includes('night') &&
+        (sel.lumbohip_symp?.includes('fever') || sel.lumbohip_symp?.includes('swelling'))
+      ) {
+        imps.push('Red flag: 감염/종양 감별 필요');
+      }
+      // 신경학적 응급
+      if (
+        sel.lumbohip_symp?.includes('weakness') && sel.lumbohip_symp?.includes('bowel_bladder')
+      ) {
+        imps.push('Red flag: 신경학적 응급 (마미증후군 등)');
+      }
+      if (!imps.length) {
+        imps.push('진찰 및 영상검사 권장');
+      }
+      // 자유 서술
+      if (sel.lumbohip_extra) {
+        imps.push(`추가 정보: ${sel.lumbohip_extra}`);
+      }
+      return imps;
+    }
+
+    function generateThoracicImpression(sel) {
+      const imps = [];
+      // 흉추 신경근병증 (radiculopathy)
+      const radicSign =
+        (sel.thoracic_char === 'band' || sel.thoracic_char === 'stabbing') &&
+        ['cough', 'deep_breath', 'rotate'].includes(sel.thoracic_trigger);
+      if (radicSign) {
+        imps.push('Thoracic Radiculopathy 의심');
+      }
+      // 대상포진 후 신경통
+      if (sel.thoracic_skin === 'vesicles' || sel.onset === 'zoster') {
+        imps.push('Postherpetic Neuralgia 가능성');
+      }
+      // 후관절/늑골관절 기능장애
+      const facetSign = sel.thoracic_trigger === 'rotate' && sel.thoracic_press === 'joint';
+      if (facetSign) {
+        imps.push('Thoracic Facet or Costotransverse Dysfunction 고려');
+      }
+      // 근막통
+      if (sel.thoracic_press === 'muscle' && sel.thoracic_char === 'dull') {
+        imps.push('Thoracic Myofascial Pain 고려');
+      }
+      if (!imps.length) {
+        imps.push('진찰 및 영상검사 권장');
+      }
       return imps;
     }
 
     function generateImpression(sel) {
-  const imps = [];
+      let imps = [];
 
-  // ---------------------------
-  // arm_hand 영역: 통증/기능 관련
-  // ---------------------------
+      // 두통
+      if (sel.area.includes('headache')) {
+        imps = imps.concat(generateHeadacheImpression(sel));
+      }
+      // 얼굴
+      if (sel.area.includes('face')) {
+        if (sel.face_char === 'electric') {
+          imps.push('Trigeminal Neuralgia 의심');
+        }
+        if (sel.face_location === 'jaw' && sel.face_symp === 'jaw_lock') {
+          imps.push('TMJ Dysfunction 고려');
+        }
+        if (sel.face_char === 'aching' && sel.onset === 'gradual') {
+          imps.push('Atypical Facial Pain 고려');
+        }
+        if (sel.face_trigger === 'wash' && sel.face_location === 'jaw') {
+          imps.push('Hyoid Syndrome 고려');
+        }
+        if (sel.face_symp === 'sensory') {
+          imps.push('Reflex Sympathetic Dystrophy 고려');
+        }
+      }
+      // 목
+      if (sel.area.includes('neck')) {
+        if (sel.neck_location === '윗등' && sel.neck_posture === 'device') {
+          imps.push('Upper Trapezius Myofascial Pain 고려');
+        }
+        if (['측면', '날개뼈 사이'].includes(sel.neck_location) && sel.neck_posture === 'rotate') {
+          imps.push('Cervical Facet Syndrome 고려');
+        }
+        if (sel.neck_rad === '어깨 윗팔' || sel.neck_symp === 'arm_sens') {
+          imps.push('Cervical Radiculopathy 의심');
+        }
+        if (sel.onset === 'recurrent' && sel.neck_posture === 'device') {
+          imps.push('Fibromyalgia of Cervical Musculature 고려');
+        }
+        if (sel.onset === 'trauma' && sel.neck_location === '측면') {
+          imps.push('Cervical Strain 고려');
+        }
+        if (sel.neck_symp === 'morning_stiff') {
+          imps.push('Cervicothoracic Interspinous Bursitis 고려');
+        }
+      }
+      // 팔/손 저림
+      if (sel.area.includes('plexus')) {
+        imps = imps.concat(generateArmHandImpression(sel));
+      }
+      // 팔/손 통증
+      if (sel.area.includes('arm_hand')) {
+        imps = imps.concat(generateArmHandImpression(sel));
+      }
+      // 어깨
+      if (sel.area.includes('shoulder')) {
+        if (sel.onset === 'gradual' && sel.shoulder_nocturnal === 'side_sleep') {
+          imps.push('Shoulder Arthritis Pain 고려');
+        }
+        if (sel.shoulder_location === 'ac' && sel.shoulder_trigger === 'behind') {
+          imps.push('Acromioclavicular Joint Pain 고려');
+        }
+        if (sel.shoulder_location === 'lateral' && sel.shoulder_trigger === 'raise') {
+          imps.push('Subdeltoid Bursitis 고려');
+        }
+        if (sel.shoulder_location === 'anterior' && sel.shoulder_trigger === 'dress_wash') {
+          imps.push('Bicipital Tendinitis 고려');
+        }
+        if (sel.shoulder_symp === 'reduced') {
+          imps.push('Adhesive Capsulitis 고려');
+        }
+        if (sel.shoulder_symp === 'sound' && sel.shoulder_nocturnal === 'wake_pain') {
+          imps.push('Rotator Cuff Tear 감별');
+        }
+        if (sel.shoulder_trigger === 'behind' && sel.shoulder_symp === 'reduced') {
+          imps.push('Scapulocostal Syndrome 고려');
+        }
+        if (sel.onset === 'gradual' && sel.shoulder_score >= 8) {
+          imps.push('Avascular Necrosis of GH Joint 감별 권장');
+        }
+      }
+      // 등/늑골
+      if (sel.area.includes('thoracic')) {
+        imps = imps.concat(generateThoracicImpression(sel));
+      }
+      // 허리/고관절/골반
+      if (sel.area.includes('lumbohip')) {
+        imps = imps.concat(generateLumboHipImpression(sel));
+      }
+      // 다리
+      if (sel.area.includes('leg_pain')) {
+        if (sel.leg_pain_symp === 'numbness' && sel.leg_pain_trigger === 'walking') {
+          imps.push('Neurogenic Claudication 의심 (척추관 협착 가능성)');
+        }
+        if (sel.leg_pain_symp === 'pain' && sel.leg_pain_trigger === 'rest') {
+          imps.push('Vascular Claudication 의심 (혈관질환 가능)');
+        }
+        if (sel.leg_pain_history === 'spine') {
+          imps.push('Spine-related Pathology 감별 필요');
+        }
+        if (sel.leg_pain_history === 'dvt') {
+          imps.push('DVT 의심');
+        }
+        if (sel.leg_pain_history === 'trauma') {
+          imps.push('Fracture/Traumatic Injury 감별 필요');
+        }
+        if (!imps.length) {
+          imps.push('정확한 감별을 위해 진찰/검사 권장');
+        }
+        if (sel.leg_pain_extra) {
+          imps.push(`추가 정보: ${sel.leg_pain_pain_extra}`);
+        }
+      }
 
-  if (sel.area?.includes('arm')) {
-    
-    // ▷ 증상 특성
-    if (sel.arm_symptom === 'paresthesia') {
-      imps.push('Paresthesia (감각이상) - 말초 신경 증상 고려');
+      // 심한 통증
+      if (
+        (sel.headache_score >= 8) || (sel.neck_score >= 8) || (sel.shoulder_score >= 8) ||
+        (sel.arm_score >= 8) || (sel.plexus_score >= 8) || (sel.thoracic_score >= 8) ||
+        (sel.lumbohip_score >= 8) || (sel.leg_pain_score >= 8)
+      ) {
+        imps.push('심한 통증: 적극적인 진통 및 영상검사 권장');
+      }
+      // 임프레션 없을 경우
+      if (!imps.length) {
+        imps.push('추가 진찰 및 검사 권장');
+      }
+      return imps;
     }
-    if (sel.arm_symptom === 'weakness') {
-      imps.push('Tendon Injury or Neuropathy (건손상 혹은 말초신경병증)');
-    }
-    if (sel.arm_symptom === 'night_worse') {
-      imps.push('Night-predominant Neuropathy (야간 신경통 증후군)');
-    }
 
-    // ▷ 외상 병력
-    if (sel.arm_trauma === 'yes') {
-      imps.push('Traumatic Injury (외상 후 관절/건/신경 손상 가능성)');
-    }
+    // ========== Google Apps Script 연동 URL ==========
+    // 본인의 Apps Script 웹앱 URL로 바꿔 주세요!
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwfWXAxU9hi91pCFv__g__cyZBkbSTm0_BzZIWefLc1j36JO33xokMseGjObRV63hXX/exec';
 
-    // ▷ 통증 유발 동작
-    if (sel.arm_trigger === 'flexion') {
-      imps.push('Flexor Tendinopathy (손목 굴곡건 병변)');
-    }
-    if (sel.arm_trigger === 'extension') {
-      imps.push('Extensor Tendinopathy (손목 신전건 병변)');
-    }
-    if (sel.arm_trigger === 'grip') {
-      imps.push('Grip-related Strain (악력 사용 관련 질환)');
-    }
-    if (sel.arm_trigger === 'snap') {
-      imps.push('Trigger Finger (방아쇠 수지)');
-    }
-
-    // ▷ 부종/피부 증상
-    if (sel.arm_swelling === 'swelling' || sel.arm_swelling === 'heat') {
-      imps.push('Tenosynovitis / Inflammatory Arthritis (건초염 또는 염증성 관절염)');
-    }
-    if (sel.arm_swelling === 'redness') {
-      imps.push('Infection (감염성 관절염 가능성)');
-    }
-
-    // ▷ 아침 뻣뻣함
-    if (sel.arm_morning_stiff === 'yes') {
-      imps.push('Rheumatoid Arthritis (류마티스 관절염)');
-    }
-
-    // ▷ 결절/건막 증상
-    if (sel.arm_nodule === 'yes') {
-      imps.push('Dupuytren’s Contracture (수장건막 구축)');
-    }
-  }
-
-  return imps;
-}
-
-function generateHeadacheImpression(sel) {
-  const imps = [];
-  
-  // 편측 or 관자놀이 + 박동성 + 구역/시야이상 동반 → 편두통
-  if (
-    (sel.hd_location === 'unilateral' || sel.hd_location === 'temporal') &&
-    (sel.hd_char === 'pulsating' || sel.hd_char === 'throbbing') &&
-    (sel.hd_symp === 'nausea' || sel.hd_symp === 'visual')
-  ) {
-    imps.push('Migraine (편두통)');
-  }
-
-  // 이마·정수리 + 조이는/압박감/둔한 → 긴장성 두통
-  if (
-    (sel.hd_location === 'frontal' || sel.hd_location === 'vertex') &&
-    (sel.hd_char === 'pressing' || sel.hd_char === 'dull')
-  ) {
-    imps.push('Tension-type Headache (긴장성 두통)');
-  }
-
-  // 갑작스런 심한 두통 + 발열/어지럼/팔다리 힘빠짐 등 동반 → Red flag
-  if (
-    sel.hd_onset === 'sudden' &&
-    (sel.hd_symp === 'fever' || sel.hd_symp === 'dizziness' || sel.hd_symp === 'weakness')
-  ) {
-    imps.push('Red flag: Serious Secondary Headache (즉시 평가 필요)');
-  }
-
-  // 관자놀이 + 시야이상/노년층 → 측두동맥염 등 감별
-  if (
-    sel.hd_location === 'temporal' &&
-    sel.hd_symp === 'visual'
-  ) {
-    imps.push('Temporal Arteritis (측두동맥염) 감별');
-  }
-
-  // 눈 주위 + 눈물/콧물 → 군발두통
-  if (
-    sel.hd_location === 'periorbital' &&
-    sel.hd_symp === 'tearing'
-  ) {
-    imps.push('Cluster Headache (군발두통)');
-  }
-
-  // 머리 외상 병력 + 두통 → 이차성 두통 감별
-  if (sel.hd_hist === 'trauma') {
-    imps.push('Head Trauma History: Secondary Headache 감별');
-  }
-
-  // 급성 발병만 체크
-  if (sel.hd_onset === 'sudden') {
-    imps.push('Sudden Onset: Subarachnoid Hemorrhage 등 응급 감별 필요');
-  }
-
-  // 진통제로 호전 → 양성 두통 가능성 ↑
-  if (sel.hd_relief === 'medication') {
-    imps.push('Analgesic-responsive headache (진통제 반응)');
-  }
-
-  // 진단 없을 경우
-  if (!imps.length)
-    imps.push('정확한 감별을 위해 진찰/검사가 필요합니다.');
-
-  return imps;
-}
-function generateLumboHipImpression(sel) {
-  const imps = [];
-
-  // 요추 추간판 탈출증 (허리, 다리 저림/뻗침, 허리 숙일 때 악화)
-  if (
-  (
-    sel.lh_location?.includes('lumbar') ||
-    sel.lh_symp?.includes('radiating_leg')
-  ) &&
-  (
-    sel.lh_trigger?.includes('bending') ||
-    sel.lh_trigger?.includes('walking') ||
-    sel.lh_symp?.includes('weakness') ||
-    sel.lh_trigger?.includes('sitting')
-  )
-) {
-  imps.push('Lumbar Disc Herniation (요추 추간판 탈출증) 의심');
-}
-  // 척추관 협착증 (허리/엉덩이, 다리 저림, 걷거나 오래 서있을 때 악화, 앉으면 완화)
-  if (
-    (sel.lh_location?.includes('lumbar') || sel.lh_location?.includes('buttock')) &&
-    sel.lh_symp?.includes('radiating_leg') &&
-    sel.lh_trigger?.includes('walking')
-  ) {
-    imps.push('Spinal Stenosis (척추관 협착증) 감별');
-  }
-   // Facet Joint Syndrome (허리, 국소통, 허리 뒤로 젖힐 때 악화)
-  if (
-  sel.lh_location?.includes('lumbar') &&
-  (sel.lh_symp?.includes('local_pain') || sel.lh_symp?.includes('stiffness')) ||
-  sel.lh_trigger?.includes('extension')
-) {
-  imps.push('Facet Joint Syndrome (척추 후관절 증후군) 감별');
-}
-
-  // 고관절 골관절염 (고관절, 사타구니, 아픈 부위만 아픔, 걷기/움직임 시 악화)
-  if (
-    (sel.lh_location?.includes('hip_joint') || sel.lh_location?.includes('groin')) &&
-    (sel.lh_symp?.includes('local_pain') || sel.lh_symp?.includes('stiffness')) &&
-    (sel.lh_trigger?.includes('walking') || sel.lh_trigger?.includes('rest'))
-  ) {
-    imps.push('Hip Osteoarthritis (고관절 골관절염) 감별');
-  }
-
-  // 대전자 점액낭염 (엉덩이/고관절, 국소 통증, 눌렀을 때/움직일 때 심해짐)
-  if (
-    (sel.lh_location?.includes('buttock') || sel.lh_location?.includes('hip_joint')) &&
-    sel.lh_symp?.includes('local_pain')
-  ) {
-    imps.push('Trochanteric Bursitis (대전자 점액낭염) 감별');
-  }
-
-  // 천장관절염 (엉덩이, 한 쪽, 아침에 뻣뻣, 관절염 과거력)
-  if (
-    sel.lh_location?.includes('buttock') &&
-    (sel.lh_symp?.includes('stiffness') || sel.lh_hist?.includes('arthritis') || sel.lh_hist?.includes('groin'))
-  ) {
-    imps.push('Sacroiliitis (천장관절염) 감별');
-  }
-
-  // 압박골절 (허리, 외상 병력, 갑작스런 통증)
-  if (
-    sel.lh_location?.includes('lumbar') &&
-    sel.lh_hist?.includes('trauma')
-  ) {
-    imps.push('Compression Fracture (요추 압박골절) 감별');
-  }
-
-  // 대퇴골두 무혈성 괴사 (고관절, 암/항암/스테로이드, 점진적 악화)
-  if (
-    sel.lh_location?.includes('hip_joint') &&
-    (sel.lh_hist?.includes('avascular_necrosis') || sel.lh_hist?.includes('cancer'))
-  ) {
-    imps.push('Avascular Necrosis of Femoral Head (대퇴골두 무혈성 괴사) 감별');
-  }
-
-  // 미골통 (꼬리뼈, 국소 통증, 앉아 있을 때 악화)
-  if (
-    sel.lh_location?.includes('coccyx') &&
-    sel.lh_trigger?.includes('sitting')
-  ) {
-    imps.push('Coccygodynia (미골통) 감별');
-  }
-
-  // 밤/자다 깰 정도의 통증 + 발열/붓기 → 감염·종양 감별
-  if (
-    sel.lh_trigger?.includes('night') &&
-    (sel.lh_symp?.includes('fever') || sel.lh_symp?.includes('swelling'))
-  ) {
-    imps.push('Red flag: 감염·종양 등 응급 감별 필요');
-  }
-
-  // 다리 힘빠짐/배뇨배변장애 → 신경학적 응급
-  if (
-    sel.lh_symp?.includes('weakness') && sel.lh_symp?.includes('bowel_bladder')
-  ) {
-    imps.push('Red flag: 신경학적 응급(급성 신경마비/마미증후군 등) 감별');
-  }
-
-  // 진단없을 경우
-  if (!imps.length)
-    imps.push('정확한 감별을 위해 진찰/검사가 필요합니다.');
-
-  return imps;
-}
-    // Google Sheets 연동 URL (실제 URL로 교체 필요)
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbycLUEm4Nlj1_PeF01PYnsnsCJoSvibYyuyjdsxOZyxodLL7e4AlJ5nXmI-3oncWw7o/exec'; // 실제 URL로 교체하세요
-
-// ----- 문진 제출 이벤트 -----
-document.getElementById('form').addEventListener('submit', async e => {
+    // ========== 단일 submit 핸들러 ==========
+    document.getElementById('form').addEventListener('submit', async e => {
       e.preventDefault();
+      e.stopImmediatePropagation(); // 혹시 남은 리스너 차단
 
-      // 1. 환자정보 입력 검증 (환자번호, 생년월일 8자리)
+      // 1) 환자정보 검증
       const pid = document.getElementById('patientIdInput').value.trim();
-      const pbirth = document.getElementById('patientBirthInput').value.trim();
-
-      if (!pid) {
-        alert('환자 번호를 입력하세요!');
-        idx = 0;
-        showCurrent();
-        return;
-      }
-      // 생년월일: 8자리 숫자만 허용
-      if (!pbirth || !/^\d{8}$/.test(pbirth)) {
-        alert('생년월일을 8자리 숫자로 입력하세요! (예: 19900101)');
+      const pbdt = document.getElementById('patientBirthInput').value.trim();
+      if (!pid || !/^\d{8}$/.test(pbdt)) {
+        alert('환자번호와 생년월일(8자리)을 정확히 입력하세요.');
         idx = 0;
         showCurrent();
         return;
       }
 
-      // 2. 기존 데이터 구조 준비
+      // 2) area 배열 만들기
+      let area = [...selectedAreas];
+      if (area.includes('arm')) {
+        selectedArmTypes.forEach(t => {
+          if (!area.includes(t)) area.push(t);
+        });
+        area = area.filter(a => a !== 'arm');
+      }
+
+      // 3) onsets, scores, details 객체 초기화
+      const onsets = {}, scores = {}, details = [];
+
+      // 각 부위별 onset/score 수집
+      area.forEach(a => {
+        // “onset” 버튼 찾기 (data-name="onset")
+        const ob = document.querySelector(
+          `.question[data-group="${a}"] .option-button[data-name="onset"].selected`
+        );
+        onsets[a] = ob ? ob.dataset.value : '';
+
+        // “점수(score)” 버튼 찾기 (data-score 속성)
+        const sb = document.querySelector(
+          `.question[data-group="${a}"] .score-button.selected`
+        );
+        scores[a] = sb ? Number(sb.dataset.score) : '';
+      });
+
+      // 4) details 수집 (선택된 모든 옵션 버튼)
+      document.querySelectorAll('.option-button.selected').forEach(btn => {
+        const qg = btn.closest('.question').dataset.group;
+        // 제외: general / arm_choice / pid
+        if (['general', 'arm_choice', 'pid'].includes(qg)) return;
+        const nm = btn.dataset.name || qg;
+        const val = btn.dataset.value || btn.innerText.trim();
+        details.push({ name: nm, value: val, text: btn.innerText.trim() });
+      });
+      // 자유 입력 텍스트 (팔/손, 허리/고관절, 다리)
+      ['arm_hand_impression', 'lumbohip_extra', 'leg_pain_pain_extra'].forEach(id => {
+        const ta = document.getElementById(id);
+        if (ta && ta.value.trim()) {
+          details.push({ name: id, value: ta.value.trim(), text: ta.value.trim() });
+        }
+      });
+
+      // 5) formData 직렬화
       const formData = {
         patient_id: pid,
-        patient_birth: pbirth,
-        area: [],             // 선택된 부위
-        onsets: {},           // 부위별 발생 시기
-        scores: {},           // 부위별 통증 점수
-        details: [],
-        impression: []
+        patient_birth: pbdt,
+        area,
+        // “시기(onset)” 객체 그대로 담기
+        onsets,
+        // “점수(score)” 객체 그대로 담기
+        scores,
+        details,
+        // Impression 생성 → sel 객체로 onsets/scores/details 을 전달
+        impression: generateImpression({
+          area,
+          // onsets 속성 풀어서
+          ...onsets,
+          // scores 속성 풀어서 (숫자로 들어 있음)
+          ...scores,
+          // details 배열을 키 – 값 형태로 바꿔서
+          ...details.reduce((acc, d) => {
+            acc[d.name] = d.value;
+            return acc;
+          }, {})
+        })
       };
 
+      // ▶ 디버그용: 제출 직전에 payload가 제대로 만들어졌는지 확인!
+      console.log('▶ formData:', formData);
 
-      // 통증 부위 (복수 선택 가능)
-      document.querySelectorAll('.question[data-group="general"] .option-button.selected').forEach(btn => {
-        if (btn.closest('.question').querySelector('strong').innerText.includes('1. 통증 부위')) {
-          formData.area.push(btn.dataset.value);
-        }
-      });
-      // (1) 일반 부위 수집 후…
-document.querySelectorAll('.question[data-group="general"] .option-button.selected')
-  .forEach(btn => {
-    formData.area.push(btn.dataset.value);
-  });
-
-// (2) 팔이 선택됐다면, 2차 선택된 타입(plexus, arm_hand)도 area에 병합
-if (formData.area.includes('arm')) {
-  selectedArmTypes.forEach(type => {
-    if (!formData.area.includes(type)) {
-      formData.area.push(type);
-    }
-  });
-}
-
-      // ★★★ arm_hand_impression 값을 details에 추가! ★★★
-       const armHandImp = document.getElementById('arm_hand_impression') ? document.getElementById('arm_hand_impression').value.trim() : "";
-      if (armHandImp) {
-      formData.details.push({
-     name: "arm_hand_impression",
-     value: armHandImp,
-     text: armHandImp
-      });
-      }
-      // ★★★ 허리/고관절/골반 extra 값도 details에 추가! ★★★
-         const lumbohipExtra = document.getElementById('lumbohip_extra') ? document.getElementById('lumbohip_extra').value.trim() : "";
-    if (lumbohipExtra) {
-      formData.details.push({
-      name: "lumbohip_extra",
-      value: lumbohipExtra,
-      text: lumbohipExtra
-       });
-       }
-      // ★★ 부위별 onset/score 수집 ★★
-      formData.area.forEach(area => {
-        // 발생 시기
-        const ob = document.querySelector(
-          `.question[data-group="${area}"] .option-button[data-name="onset"].selected`
-        );
-        formData.onsets[area] = ob ? ob.dataset.value : null;
-        // 통증 점수
-        const sb = document.querySelector(
-          `.question[data-group="${area}"] .score-button.selected`
-        );
-        formData.scores[area] = sb ? parseInt(sb.dataset.score) : null;
-      });
-         // (선택) 전체 최대 점수 계산이 아니라, 부위별 점수를 줄바꿈으로 기록
-          // onset 칼럼에 "neck_gradual\nlumbohip_trauma" 같이
-        formData.onset = formData.area
-         .map(a => `${a}_${formData.onsets[a]||'N/A'}`)
-         .join('\n');
-
-         // score 칼럼에 "neck_5\nlumbohip_3" 같이
-        formData.score = formData.area
-         .map(a => `${a}_${formData.scores[a]||0}`)
-         .join('\n');
-
-      // 나머지 상세 정보 수집
-      document.querySelectorAll('.option-button.selected').forEach(btn => {
-        const txt = btn.closest('.question').querySelector('strong').innerText;
-        if (!txt.includes('1. 통증 부위') && !['onset'].includes(btn.dataset.name)) {
-          formData.details.push({ name: btn.dataset.name||"unknown", value: btn.dataset.value||btn.innerText, text: btn.innerText });
-        }
-      });
-
-      // 임프레션 생성
-      const selForImpression = {
-        area: formData.area,
-        onset: formData.onset,
-        score: formData.score
-      };
-      formData.details.forEach(detail => {
-        selForImpression[detail.name] = detail.value;
-      });
-      formData.impression = generateImpression(selForImpression);
-
-      // 제출 상태 표시
-      sub.innerText = '제출 중...';
-      sub.disabled = true;
-
+      // 6) 전송 UI 변경 및 fetch
+      submitBtn.innerText = '제출 중…';
+      submitBtn.disabled = true;
       try {
-        // JSON 데이터 직렬화
-        const jsonData = JSON.stringify(formData);
-
-        // Google Apps Script로 데이터 전송 (CORS 문제 방지)
         await fetch(SHEET_URL, {
           method: 'POST',
-          mode: 'no-cors',
-          body: jsonData
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+          mode: 'no-cors'
         });
-
-        // 서버 응답을 확인하지 않고 바로 성공 처리
+        // 제출 성공 화면 표시
         document.getElementById('form').style.display = 'none';
         document.querySelector('h1').style.display = 'none';
         document.getElementById('thankyou').style.display = 'block';
-
-        sub.innerText = '제출';
-        sub.disabled = false;
-
       } catch (err) {
-        console.error("제출 중 오류 발생:", err);
-        alert(`제출 중 오류가 발생했습니다:\n${err.message || '알 수 없는 오류'}\n\n다시 시도하거나 관리자에게 문의하세요.`);
-        sub.innerText = '제출';
-        sub.disabled = false;
+        console.error('제출 오류:', err);
+        alert('제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      } finally {
+        submitBtn.innerText = '제출';
+        submitBtn.disabled = false;
       }
     });
-
   </script>
+  <!-- ────────────────────────────────────── -->
 </body>
 </html>
